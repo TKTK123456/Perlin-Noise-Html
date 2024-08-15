@@ -7,68 +7,15 @@
 </head>
 
 <body>
-  <canvas id='cnvs' class="cnvs"></canvas>
-  <br>
-  <canvas id="cnvs2" class="cnvs"></canvas>
-  <br>
-  <button onclick="draw(cnvs, ctx, cnvs2, ctx2)">Reload</button>
-  <br>
-  <canvas id="cnvs3" class="cnvsType2"></canvas>
+  <canvas id="cnvs" class="cnvsType2"></canvas>
   <script>
     'use strict';
     let cnvs = document.getElementById('cnvs');
-    let cnvs2 = document.getElementById('cnvs2');
-    let cnvs5 = document.getElementById('cnvs3');
-    cnvs2.width = cnvs2.height = 512;
-    cnvs.width = cnvs.height = 512;
+    cnvs.width = cnvs.height = 1000;
     let ctx = cnvs.getContext('2d');
-    let ctx2 = cnvs2.getContext('2d');
-    let ctx5 = cnvs5.getContext('2d');
-    async function draw(cnvs3, ctx3, cnvs4, ctx4) {
-      const GRID_SIZE = 4;
-      const RESOLUTION = 128;
-      const COLOR_SCALE = 250;
-
-      let pixel_size = cnvs3.width / RESOLUTION;
-      let num_pixels = GRID_SIZE / RESOLUTION;
-      for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE) {
-        for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE) {
-          let v = parseInt(perlin.get(x, y) * COLOR_SCALE);
-          ctx3.fillStyle = 'hsl(' + v + ',50%,50%)';
-          ctx3.fillRect(
-            x / GRID_SIZE * cnvs3.width,
-            y / GRID_SIZE * cnvs3.width,
-            pixel_size,
-            pixel_size
-          );
-        }
-      }
-      pixel_size = cnvs4.width / RESOLUTION;
-      for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE) {
-        for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE) {
-          if (parseInt(perlin.get(x, y) * COLOR_SCALE)>0.5) {
-            ctx4.fillStyle = 'hsl(0, 0%, 0%)'
-            ctx4.fillRect(
-              x / GRID_SIZE * cnvs4.width,
-              y / GRID_SIZE * cnvs4.width,
-              pixel_size,
-              pixel_size
-            );
-          } else {
-            ctx4.fillStyle = 'hsl(240, 100%, 30%)'
-            ctx4.fillRect(
-              x / GRID_SIZE * cnvs4.width,
-              y / GRID_SIZE * cnvs4.width,
-              pixel_size,
-              pixel_size
-            );
-          }
-        }
-      }
-       drawMap(1000, 1000, cnvs5, ctx5, GRID_SIZE, RESOLUTION, COLOR_SCALE)
-      perlin.seed()
-    }
-    draw(cnvs, ctx, cnvs2, ctx2);
+    const GRID_SIZE = 4;
+    const RESOLUTION = 128;
+    const COLOR_SCALE = 250;
     async function drawMap(w, h, cn, ct, gs, r, cs) {
       let pixel_size = ((w+h)/2) / r;
       let num_pixels = gs / r;
@@ -85,6 +32,7 @@
         }
       }
     }
+    drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
   </script>
 </body>
 </html>
