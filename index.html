@@ -6,27 +6,31 @@
 </head>
 
 <body>
-  <canvas id='cnvs'></canvas>
+  <canvas id='cnvs' class="cnvs"></canvas>
+  <canvas id="cnvs2" class="cnvs"></canvas>
   <script>
     'use strict';
     let cnvs = document.getElementById('cnvs');
+    let cnvs2 = document.getElementById('cnvs2');
+    cnvs2.width = cnvs2.height = 512;
     cnvs.width = cnvs.height = 512;
     let ctx = cnvs.getContext('2d');
-    async function draw() {
+    let ctx2 = cnvs2.getContext('2d');
+    async function draw(cnvs3, ctx3) {
       const GRID_SIZE = 4;
       const RESOLUTION = 128;
-      const COLOR_SCALE = parseInt(Math.random() * 255);
+      const COLOR_SCALE = 250;
 
-      let pixel_size = cnvs.width / RESOLUTION;
+      let pixel_size = cnvs3.width / RESOLUTION;
       let num_pixels = GRID_SIZE / RESOLUTION;
 
       for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE) {
         for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE) {
           let v = parseInt(perlin.get(x, y) * COLOR_SCALE);
-          ctxa.fillStyle = 'rgb(' + v + ',' + v + ',' + v + ')'
-          ctx.fillRect(
-            x / GRID_SIZE * cnvs.width,
-            y / GRID_SIZE * cnvs.width,
+          ctx3.fillStyle = 'hsl(' + v + ',50%,50%)';
+          ctx3.fillRect(
+            x / GRID_SIZE * cnvs3.width,
+            y / GRID_SIZE * cnvs3.width,
             pixel_size,
             pixel_size
           );
@@ -34,9 +38,10 @@
       }
       perlin.seed()
     }
-    draw()
+    draw(cnvs, ctx);
+    draw(cnvs2, ctx2)
   </script>
-  <button onclick="draw()">Reload</button>
+  <button onclick="draw(cnvs, ctx);draw(cnvs2, ctx2)">Reload</button>
 </body>
 
 </html>
