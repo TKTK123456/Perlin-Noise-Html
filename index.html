@@ -39,7 +39,7 @@
       pixel_size = cnvs4.width / RESOLUTION;
       for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE) {
         for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE) {
-          var v = parseInt((perlin.get(x, y)/2+0.5) * 255)
+          var v = parseInt((perlin.get(x, y) / 2 + 0.5) * 255)
           ctx4.fillStyle = 'rgb(' + v + ',' + v + ',' + v + ')'
           ctx4.fillRect(
             x / GRID_SIZE * cnvs4.width,
@@ -55,6 +55,7 @@
   </script>
   <br>
   <button onclick="draw(cnvs, ctx, cnvs2, ctx2)">Reload</button>
+  <br>
+  
 </body>
-
 </html>
