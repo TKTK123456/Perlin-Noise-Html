@@ -15,7 +15,7 @@
   <br>
   <canvas id="cnvs3" class="cnvsType2"></canvas>
   <br>
-  <input type="range" min="0" max="1000" value="40" id="slider1">
+  <input type="range" min="0" max="1000" value="4" id="slider1">
   <br>
   <input type="range" min="0" max="1000" value="128" id="slider2">
   <br>
@@ -75,7 +75,7 @@
       }
       perlin.seed()
     }
-    drawMap(1000, 1000, cnvs5, ctx5, 40, 128, 250)
+    drawMap(1000, 1000, cnvs5, ctx5, 4, 128, 250)
     draw(cnvs, ctx, cnvs2, ctx2);
     async function drawMap(w, h, cn, ct, gs, r, cs) {
       let pixel_size = ((w+h)/2) / r;
