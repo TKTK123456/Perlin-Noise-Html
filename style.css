@@ -2,7 +2,7 @@ html {
   height: 100%;
   width: 100%;
 }
-.cnvs {
+#cnvs {
   width: 512px;
   height: 512px;
   position: relative;
