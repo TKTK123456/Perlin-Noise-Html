@@ -10,7 +10,7 @@
   <canvas id='cnvs' class="cnvs"></canvas>
   <button onclick="draw(cnvs, ctx, cnvs2, ctx2)">Reload</button>
   <canvas id="cnvs2" class="cnvs"></canvas>
-  <p id="test"></p>
+  <p id="test" style=`width: 512px; height: 512px;`></p>
   <script>
     'use strict';
     let cnvs = document.getElementById('cnvs');
@@ -42,7 +42,7 @@
       pixel_size = cnvs4.width / RESOLUTION;
       for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE) {
         for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE) {
-          if (parseInt(perlin.get(x, y))>0.5) {
+          if (parseInt(perlin.get(x, y) * COLOR_SCALE)>0.5) {
             ctx4.fillStyle = 'hsl(0, 0%, 0%)'
             ctx4.fillRect(
               x / GRID_SIZE * cnvs4.width,
