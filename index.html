@@ -16,14 +16,13 @@
     cnvs.width = cnvs.height = 512;
     let ctx = cnvs.getContext('2d');
     let ctx2 = cnvs2.getContext('2d');
-    async function draw(cnvs3, ctx3) {
+    async function draw(cnvs3, ctx3, cnvs4, ctx4) {
       const GRID_SIZE = 4;
       const RESOLUTION = 128;
       const COLOR_SCALE = 250;
 
       let pixel_size = cnvs3.width / RESOLUTION;
       let num_pixels = GRID_SIZE / RESOLUTION;
-
       for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE) {
         for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE) {
           let v = parseInt(perlin.get(x, y) * COLOR_SCALE);
@@ -36,12 +35,25 @@
           );
         }
       }
+      pixel_size = cnvs4.width / RESOLUTION;
+      for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE) {
+        for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE) {
+          var v = parseInt((perlin.get(x, y)/2+0.5) * 255)
+          ctx4.fillStyle = 'rgb(' + v + ',' + v + ',' + v + ')'
+          ctx4.fillRect(
+            x / GRID_SIZE * cnvs4.width,
+            y / GRID_SIZE * cnvs4.width,
+            pixel_size,
+            pixel_size
+          );
+        }
+      }
       perlin.seed()
     }
-    draw(cnvs, ctx);
-    draw(cnvs2, ctx2)
+    draw(cnvs, ctx, cnvs2, ctx2);
   </script>
-  <button onclick="draw(cnvs, ctx);draw(cnvs2, ctx2)">Reload</button>
+  <br>
+  <button onclick="draw(cnvs, ctx, cnvs2, ctx2)">Reload</button>
 </body>
 
 </html>
