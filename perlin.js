@@ -22,8 +22,6 @@ let perlin = {
         return a + this.smootherstep(x) * (b-a);
     },
     seed: function(){
-        alert(this.memory);
-        alert(this.gradients)
         this.gradients = {};
         this.memory = {};
     },
