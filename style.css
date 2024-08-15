@@ -5,8 +5,15 @@ html {
 .cnvs {
   width: 512px;
   height: 512px;
-  position: relative;
-  display: block;
-  margin-left: auto;
-  margin-right: auto
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+
+  margin: 0; padding: 0;
 }
