@@ -21,7 +21,7 @@
   <br>
   <input type="range" min="0" max="300" value="250" id="slider3">
   <br>
-  <button onclick=`drawMap(1000, 1000, cnvs5, ctx5, ${$("#slider1").val()}, ${$("#slider2").val()}, ${$("#slider3").val()})`>Render Map Thing</button>
+  <button id="drawMap">Render</button>
   <script>
     'use strict';
     let cnvs = document.getElementById('cnvs');
@@ -94,6 +94,11 @@
         }
       }
     }
+    $(document).ready(function(){
+      $("#drawMap").click(function(){
+        drawMap(cnvs5.width, cnvs5.height, cnvs5, ctx5, parseInt($("#slider1").val()), parseInt($("#slider2").val()), parseInt($("#slider3").val()))
+      })
+    });
   </script>
 </body>
 </html>
