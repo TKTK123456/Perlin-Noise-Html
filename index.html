@@ -15,13 +15,13 @@
   <br>
   <canvas id="cnvs3" class="cnvsType2"></canvas>
   <br>
-  <input type="range" min="0" max="1000" value="4" id="slider1">
+  <input type="range" min="0" max="300" value="4" id="slider1">
   <br>
-  <input type="range" min="0" max="1000" value="128" id="slider2">
+  <input type="range" min="0" max="300" value="128" id="slider2">
   <br>
-  <input type="range" min="0" max="1000" value="250" id="slider3">
+  <input type="range" min="0" max="300" value="250" id="slider3">
   <br>
-  <button onclick=`drawMap(1000, 1000, cnvs5, ctx5, ${$("#slider1").val}, ${$("#slider2").val}, ${$("#slider3").val})`>Render Map Thing</button>
+  <button onclick=`drawMap(1000, 1000, cnvs5, ctx5, ${$("#slider1").val()}, ${$("#slider2").val()}, ${$("#slider3").val()})`>Render Map Thing</button>
   <script>
     'use strict';
     let cnvs = document.getElementById('cnvs');
