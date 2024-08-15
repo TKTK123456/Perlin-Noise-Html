@@ -5,6 +5,7 @@ html {
 .cnvs {
   width: 512px;
   height: 512px;
-  box-align: center;
-  margin: 0; padding: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
