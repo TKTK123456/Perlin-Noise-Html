@@ -38,22 +38,32 @@
           );
         }
       }
+      let testOutput = ''
       pixel_size = cnvs4.width / RESOLUTION;
       for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE) {
         for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE) {
           if (parseInt(perlin.get(x, y))>0.5) {
             ctx4.fillStyle = 'hsl(0, 0%, 0%)'
+            ctx4.fillRect(
+              x / GRID_SIZE * cnvs4.width,
+              y / GRID_SIZE * cnvs4.width,
+              pixel_size,
+              pixel_size
+            );
+            testOutput += '1'
           } else {
             ctx4.fillStyle = 'hsl(0, 0%, 100%)'
+            ctx4.fillRect(
+              x / GRID_SIZE * cnvs4.width,
+              y / GRID_SIZE * cnvs4.width,
+              pixel_size,
+              pixel_size
+            );
+            testOutput += '0'
           }
-          ctx4.fillRect(
-            x / GRID_SIZE * cnvs4.width,
-            y / GRID_SIZE * cnvs4.width,
-            pixel_size,
-            pixel_size
-          );
         }
       }
+      document.getElementById('test').innerHTML = testOutput;
       perlin.seed()
     }
     draw(cnvs, ctx, cnvs2, ctx2);
