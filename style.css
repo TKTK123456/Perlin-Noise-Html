@@ -9,3 +9,11 @@ html {
   margin-left: auto;
   margin-right: auto;
 }
+.cnvsType2 {
+  width: 1000px;
+  height: 1000px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: black;
+}
