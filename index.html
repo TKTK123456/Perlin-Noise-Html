@@ -70,7 +70,7 @@
     drawMap(1000, 1000, cnvs5, ctx5, 4, 128, 250)
     draw(cnvs, ctx, cnvs2, ctx2);
     async function drawMap(w, h, cn, ct, gs, r, cs) {
-      let pixel_size = ((w+h)/2) / r;
+      let pixel_size = w / r;
       let num_pixels = gs / r;
       for (let y = 0; y < gs; y += num_pixels / gs) {
         for (let x = 0; x < gs; x += num_pixels / gs) {
@@ -78,7 +78,7 @@
           ct.fillStyle = 'hsl(' + v + ',50%,50%)';
           ct.fillRect(
             x / gs * w,
-            y / gs * h,
+            y / gs * w,
             pixel_size,
             pixel_size
           );
