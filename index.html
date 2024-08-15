@@ -6,8 +6,9 @@
 </head>
 
 <body>
-  <div class="centerbox" class="cnvs"><canvas id='cnvs'></canvas></div>
-  <div class="centerbox" class="cnvs"><canvas id="cnvs2"></canvas></div>
+  <canvas id='cnvs' class="cnvs"></canvas>
+  <br>
+  <canvas id="cnvs2" class="cnvs"></canvas>
   <script>
     'use strict';
     let cnvs = document.getElementById('cnvs');
@@ -54,8 +55,6 @@
   </script>
   <br>
   <button onclick="draw(cnvs, ctx, cnvs2, ctx2)">Reload</button>
-  <br>
-  
 </body>
 
 </html>
