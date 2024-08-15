@@ -35,8 +35,8 @@
       perlin.seed()
     }
     draw()
-    alert(perlin.memory)
-    alert(perlin.gradients)
+    alert(JSON.stringify(perlin.memory))
+    alert(JSON.stringify(perlin.gradients))
   </script>
   <button onclick="draw()">Reload</button>
 </body>
