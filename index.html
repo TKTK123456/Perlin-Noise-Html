@@ -7,12 +7,24 @@
 </head>
 
 <body>
-  <canvas id="cnvs" class="cnvsType2"></canvas>
+  <canvas id="cnvs" class="cnvs"></canvas>
+  <br>
+  <canvas id="cnvs2" class="cnvs2"></canvas>
+  <canvas id="cnvs3" class="cnvs2"></canvas>
   <script>
     'use strict';
     let cnvs = document.getElementById('cnvs');
-    cnvs.width = cnvs.height = 1000;
+    let cnvs2 = document.getElementById('cnvs2');
+    let cnvs3 = document.getElementById('cnvs3');
+    cnvs.width = 1000;
+    cnvs.height = 712;
+    cnvs2.width = 500;
+    cnvs2.height = 356;
+    cnvs3.width = 1000;
+    cnvs3.height = 712;
     let ctx = cnvs.getContext('2d');
+    let ctx2 = cnvs2.getContext('2d');
+    let ctx3 = cnvs3.getContext('2d');
     const GRID_SIZE = 4;
     const RESOLUTION = 128;
     const COLOR_SCALE = 250;
@@ -33,6 +45,24 @@
       }
     }
     drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
+    async function drawWithXYOffset(X, Y, w, h, cn, ct, gs, r, cs) {
+      let pixel_size = ((w+h)/2) / r;
+      let num_pixels = gs / r;
+      for (let y = 0; y < gs; y += num_pixels / gs) {
+        for (let x = 0; x < gs; x += num_pixels / gs) {
+          let v = parseInt(perlin.get(x+X, y+Y) * cs);
+          ct.fillStyle = 'hsl(' + v + ',50%,50%)';
+          ct.fillRect(
+            (x+X) / gs * w,
+            (y+Y) / gs * h,
+            pixel_size,
+            pixel_size
+          );
+        }
+      }
+    }
+    drawWithXYOffset(0, 0, cnvs2.width, cnvs2.height, cnvs2, ctx2, GRID_SIZE, RESOLUTION, COLOR_SCALE)
+    drawWithXYOffset(cnvs2.width, 0, cnvs3.width, cnvs3.height, cnvs3, ctx3, GRID_SIZE, RESOLUTION, COLOR_SCALE)
   </script>
 </body>
 </html>

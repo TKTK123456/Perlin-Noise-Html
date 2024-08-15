@@ -3,15 +3,16 @@ html {
   width: 100%;
 }
 .cnvs {
-  width: 512px;
-  height: 512px;
+  width: 1000px;
+  height: 712px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  background-color: black;
 }
-.cnvsType2 {
-  width: 1000px;
-  height: 1000px;
+.cnvs2 {
+  width: 500px;
+  height: 356px;
   display: block;
   margin-left: auto;
   margin-right: auto;
