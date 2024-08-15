@@ -15,7 +15,7 @@
     async function draw() {
       const GRID_SIZE = 4;
       const RESOLUTION = 128;
-      const COLOR_SCALE = 250;
+      const COLOR_SCALE = 1;
 
       let pixel_size = cnvs.width / RESOLUTION;
       let num_pixels = GRID_SIZE / RESOLUTION;
@@ -32,8 +32,6 @@
           );
         }
       }
-      alert(JSON.stringify(perlin.memory))
-      alert(JSON.stringify(perlin.gradients))
       perlin.seed()
     }
     draw()
