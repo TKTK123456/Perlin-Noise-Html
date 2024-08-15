@@ -78,7 +78,6 @@
     drawMap(1000, 1000, cnvs5, ctx5, 4, 128, 250)
     draw(cnvs, ctx, cnvs2, ctx2);
     async function drawMap(w, h, cn, ct, gs, r, cs) {
-      alert(`Rendering with ${gs} grid size, ${r} resolution, and ${cs} color scale`)
       let pixel_size = ((w+h)/2) / r;
       let num_pixels = gs / r;
       for (let y = 0; y < gs; y += num_pixels / gs) {
