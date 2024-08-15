@@ -5,6 +5,9 @@ html {
 .cnvs {
   width: 512px;
   height: 512px;
+}
+.centerbox {
+  /* flexbox, por favor */
   display: -webkit-box;
   -webkit-box-orient: horizontal;
   -webkit-box-pack: center;
@@ -15,5 +18,7 @@ html {
   -moz-box-pack: center;
   -moz-box-align: center;
 
+  width: 100%;
+  height: 100%;
   margin: 0; padding: 0;
 }
