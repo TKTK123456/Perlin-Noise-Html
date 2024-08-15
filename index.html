@@ -32,11 +32,11 @@
           );
         }
       }
+      alert(JSON.stringify(perlin.memory))
+      alert(JSON.stringify(perlin.gradients))
       perlin.seed()
     }
     draw()
-    alert(JSON.stringify(perlin.memory))
-    alert(JSON.stringify(perlin.gradients))
   </script>
   <button onclick="draw()">Reload</button>
 </body>
