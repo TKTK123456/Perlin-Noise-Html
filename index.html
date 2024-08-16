@@ -41,10 +41,11 @@
       let pixel_size = (((w+h)/2)*gItems) / r;
       let num_pixels = gs / r;
       for (let g = 0; g < gItems; g ++) {
-        cn = document.createElement('canvas');
+        let cn = document.createElement('canvas');
+        cn.class = 'cnvs2';
         cn.width = w;
         cn.height = h;
-        ct = cn.getContext('2d');
+        let ct = cn.getContext('2d');
         ct.fillStyle = 'hsl(0,0%,0%)';
         ct.fillRect(0, 0, w, h);
         for (let y = 0; y < gs; y += num_pixels / gs) {
@@ -62,7 +63,7 @@
         Div.appendChild(cn);
       }
     }
-    drawGrid(cnvs.width, cnvs.height, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE, 2)
+    drawGrid(500, 356, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE, 2)
   </script>
 </body>
 </html>
