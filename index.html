@@ -40,7 +40,7 @@
       alert(gItems)
       let pixel_size = (((w+h)/2)*gItems) / r;
       let num_pixels = gs / r;
-      for (let g = 0; g < gItems; g += gItems/gs) {
+      for (let g = 0; g < gItems; g ++) {
         cn = document.createElement('canvas');
         cn.width = w;
         cn.height = h;
