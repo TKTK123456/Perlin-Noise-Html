@@ -11,6 +11,7 @@
   <br>
   <canvas id="cnvs2" class="cnvs2"></canvas>
   <canvas id="cnvs3" class="cnvs2"></canvas>
+  <div id="grid"></div>
   <script>
     'use strict';
     let cnvs = document.getElementById('cnvs');
@@ -45,24 +46,29 @@
       }
     }
     drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
-    async function drawWithXYOffset(X, Y, w, h, cn, ct, gs, r, cs) {
-      let pixel_size = ((w+h)/2) / r;
+    async function drawGrid(w, h, Div, gs, r, cs, gItems) {
+      let pixel_size = (((w+h)/2)*gItems) / r;
       let num_pixels = gs / r;
-      for (let y = 0; y < gs; y += num_pixels / gs) {
-        for (let x = 0; x < gs; x += num_pixels / gs) {
-          let v = parseInt(perlin.get(x+X, y+Y) * cs);
-          ct.fillStyle = 'hsl(' + v + ',50%,50%)';
-          ct.fillRect(
-            (x+X) / gs * w,
-            (y+Y) / gs * h,
-            pixel_size,
-            pixel_size
-          );
+      for (let g = 0; g < gItems; g += gItems/gs) {
+        cn = document.createElement('canvas');
+        cn.width = w;
+        cn.height = h;
+        ct = cn.getContext('2d');
+        for (let y = 0; y < gs; y += num_pixels / gs) {
+          for (let x = 0; x < gs; x += num_pixels / gs) {
+            let v = parseInt(perlin.get(x+(g*cn.width), y+(g*cn.height)) * cs);
+            ct.fillStyle = 'hsl(' + v + ',50%,50%)';
+            ct.fillRect(
+              x / gs * w,
+              y / gs * h,
+              pixel_size,
+              pixel_size
+            )
+          }
         }
+        Div.appendChild(cn);
       }
     }
-    drawWithXYOffset(0, 0, cnvs2.width, cnvs2.height, cnvs2, ctx2, GRID_SIZE/2, RESOLUTION, COLOR_SCALE)
-    drawWithXYOffset(0, -cnvs2.height, cnvs3.width, cnvs3.height, cnvs3, ctx3, GRID_SIZE/2, RESOLUTION, COLOR_SCALE)
   </script>
 </body>
 </html>
