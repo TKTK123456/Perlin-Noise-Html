@@ -11,17 +11,15 @@
   <br>
   <canvas id="cnvs2" class="cnvs"></canvas>
   <br>
-  <canvas id="cnvs3" class="cnvs"></canvas>
+  <button onclick="drawMap2(cnvs.width, cnvs.height, cnvs, ctx2, GRID_SIZE, RESOLUTION, COLOR_SCALE)">Draw Map 2</button>
   <script>
     'use strict';
     let cnvs = document.getElementById('cnvs');
     let cnvs2 = document.getElementById('cnvs2');
-    let cnvs3 = document.getElementById('cnvs3');
     cnvs.width = 1000;
     cnvs.height = 712;
     let ctx = cnvs.getContext('2d');
     let ctx2 = cnvs2.getContext('2d');
-    let ctx3 = cnvs3.getContext('2d');
     const GRID_SIZE = 4;
     const RESOLUTION = 128;
     const COLOR_SCALE = 250;
@@ -41,25 +39,24 @@
         }
       }
     }
-    async function drawGrid(w, h, cn, ct, gs, p) {
-      let bw = w / gs;
-      let bh = h / gs;
-      for (var x = 0; x <= bw; x += 40) {
-        ct.moveTo(0.5 + x + p, p);
-        ct.lineTo(0.5 + x + p, bh + p);
+   async function drawMap2(w, h, cn, ct, gs, r, cs) {
+      let pixel_size = ((w+h)/2) / r;
+      let num_pixels = gs / r;
+      for (let y = 0; y < gs; y += num_pixels / gs) {
+        for (let x = 0; x < gs; x += num_pixels / gs) {
+          let v = parseInt(perlin.get(x+w, y) * cs);
+          ct.fillStyle = 'hsl(' + v + ',50%,50%)';
+          ct.fillRect(
+            x / gs * w,
+            y / gs * h,
+            pixel_size,
+            pixel_size
+          );
+        }
       }
-
-      for (var x = 0; x <= bh; x += 40) {
-        ct.moveTo(p, 0.5 + x + p);
-        ct.lineTo(bw + p, 0.5 + x + p);
-      }
-      ct.strokeStyle = "black";
-      ct.stroke();
-    }
+   }
     $(document).ready(function(){
       drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
-      drawMap(cnvs.width, cnvs.height, cnvs2, ctx2, GRID_SIZE, RESOLUTION, COLOR_SCALE)
-      drawGrid(cnvs.width, cnvs.height, cnvs3, ctx3, GRID_SIZE, 10)
     });
   </script>
 </body>
