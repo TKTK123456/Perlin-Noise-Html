@@ -47,6 +47,7 @@
     }
     drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
     async function drawGrid(w, h, Div, gs, r, cs, gItems) {
+      alert(gItems)
       let pixel_size = (((w+h)/2)*gItems) / r;
       let num_pixels = gs / r;
       for (let g = 0; g < gItems; g += gItems/gs) {
