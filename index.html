@@ -35,35 +35,9 @@
         }
       }
     }
-    drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
-    async function drawGrid(w, h, Div, gs, r, cs, gItems) {
-      alert(gItems)
-      let pixel_size = (((w+h)/2)*gItems) / r;
-      let num_pixels = gs / r;
-      for (let g = 0; g < gItems; g ++) {
-        let cn = document.createElement('canvas');
-        cn.class = 'cnvs2';
-        cn.width = w;
-        cn.height = h;
-        let ct = cn.getContext('2d');
-        ct.fillStyle = 'hsl(0,0%,0%)';
-        ct.fillRect(0, 0, w, h);
-        for (let y = 0; y < gs; y += num_pixels / gs) {
-          for (let x = 0; x < gs; x += num_pixels / gs) {
-            let v = parseInt(perlin.get(x+(g*cn.width), y) * cs);
-            ct.fillStyle = 'hsl(' + v + ',50%,50%)';
-            ct.fillRect(
-              x / gs * w,
-              y / gs * h,
-              pixel_size,
-              pixel_size
-            )
-          }
-        }
-        Div.appendChild(cn);
-      }
-    }
-    drawGrid(500, 356, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE, 2)
+    $(document).ready(function(){
+      drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
+    });
   </script>
 </body>
 </html>
