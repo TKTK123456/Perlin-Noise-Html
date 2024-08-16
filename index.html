@@ -9,13 +9,15 @@
 <body>
   <canvas id="cnvs" class="cnvs"></canvas>
   <br>
-  <div id="grid"></div>
+  <canvas id="cnvs2" class="cnvs"></canvas>
   <script>
     'use strict';
     let cnvs = document.getElementById('cnvs');
+    let cnvs2 = document.getElementById('cnvs2');
     cnvs.width = 1000;
     cnvs.height = 712;
     let ctx = cnvs.getContext('2d');
+    let ctx2 = cnvs2.getContext('2d');
     const GRID_SIZE = 4;
     const RESOLUTION = 128;
     const COLOR_SCALE = 250;
@@ -34,6 +36,32 @@
           );
         }
       }
+    }
+    async function getGridColors(w, h, gs, r, cs, gItems) {
+      let pixel_size = ((w+h)/2) / r;
+      let num_pixels = gs / r;
+      let colors = [];
+      for (let y = 0; y < gs; y += num_pixels / gs) {
+        for (let x = 0; x < gs; x += num_pixels / gs) {
+          let v = parseInt(perlin.get(x, y) * cs);
+          colors.push('hsl(' + v + ',50%,50%)');
+        }
+      }
+      let gridColors = [];
+      for (let i = 0; i < colors.length; i += colors.length/gItems) {
+        gridColors.push(colors.slice(i, i+colors.length/gItems));
+        gridColors.push('hsl(0,0%,0%)');
+      }
+      return gridColors;
+    }
+    async function drawGrid(w, h, ct, gs, r, cs, gItems) {
+      let pixel_size = ((w+h)/2) / r;
+      let num_pixels = gs / r;
+      let gridColors = Promise.resolve(getGridColors(w, h, gs, r, cs, gItems)).then((value) => {
+        return value;
+      });
+      ct.fillStyle = gridColors;
+      ct.fillRect(0, 0, w, h);
     }
     $(document).ready(function(){
       drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
