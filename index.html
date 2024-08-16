@@ -9,17 +9,20 @@
 <body>
   <canvas id="cnvs" class="cnvs"></canvas>
   <br>
-  <canvas id="cnvs2" class="cnvs"></canvas>
-  <br>
-  <button onclick="drawMap2(cnvs.width, cnvs.height, cnvs2, ctx2, GRID_SIZE, RESOLUTION, COLOR_SCALE)">Draw Map 2</button>
+  <canvas id="cnvs2" class="cnvs2"></canvas>
+  <canvas id="cnvs3" class="cnvs2"></canvas>
   <script>
     'use strict';
     let cnvs = document.getElementById('cnvs');
     let cnvs2 = document.getElementById('cnvs2');
+    let cnvs3 = document.getElementById('cnvs3');
     cnvs.width = 1000;
     cnvs.height = 712;
+    cnvs2.width = 1000;
+    cnvs2.height = 712;
     let ctx = cnvs.getContext('2d');
     let ctx2 = cnvs2.getContext('2d');
+    let ctx3 = cnvs3.getContext('2d');
     const GRID_SIZE = 4;
     const RESOLUTION = 128;
     const COLOR_SCALE = 250;
@@ -39,29 +42,27 @@
         }
       }
     }
-   async function drawMap2(w, h, cn, ct, gs, r, cs) {
+   async function getMap(w, h, gs, r, cs) {
       let pixel_size = ((w+h)/2) / r;
       let num_pixels = gs / r;
+      let map = [];
+     let xNums = [];
+     let yNum = 0;
       for (let y = 0; y < gs; y += num_pixels / gs) {
-        let X = 0;
-        for (let x = w; x < gs+w; x += num_pixels / gs) {
+        xNums.push(0)
+        for (let x = 0; x < gs; x += num_pixels / gs) {
           let v = parseInt(perlin.get(x, y) * cs);
-          ct.fillStyle = 'hsl(' + v + ',50%,50%)';
-          ct.fillRect(
-            X / gs * w,
-            y / gs * h,
-            pixel_size,
-            pixel_size
-          );
-          X += num_pixels / gs;
+          map.push(v);
+          xNums[yNum]++
         }
+        yNum++;
       }
-     alert(w)
-     perlin.seed();
+     alert(yNum)
+     alert(xNums)
+      return map;
    }
     $(document).ready(async function(){
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
-      drawMap2(cnvs.width, cnvs.height, cnvs2, ctx2, GRID_SIZE, RESOLUTION, COLOR_SCALE)
     });
   </script>
 </body>
