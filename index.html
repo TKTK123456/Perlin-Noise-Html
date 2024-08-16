@@ -38,6 +38,7 @@
           );
         }
       }
+      perlin.seed();
     }
    async function drawMap2(w, h, cn, ct, gs, r, cs) {
       let pixel_size = ((w+h)/2) / r;
@@ -57,6 +58,7 @@
         }
       }
      alert(w)
+     perlin.seed();
    }
     $(document).ready(function(){
       drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
