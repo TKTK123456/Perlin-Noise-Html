@@ -11,10 +11,6 @@ html {
   background-color: black;
 }
 .cnvs2 {
-  width: 500px;
-  height: 356px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: black;
+  width: 480px;
+  height: 480px;
 }
