@@ -15,17 +15,9 @@
   <script>
     'use strict';
     let cnvs = document.getElementById('cnvs');
-    let cnvs2 = document.getElementById('cnvs2');
-    let cnvs3 = document.getElementById('cnvs3');
     cnvs.width = 1000;
     cnvs.height = 712;
-    cnvs2.width = 500;
-    cnvs2.height = 356;
-    cnvs3.width = 1000;
-    cnvs3.height = 712;
     let ctx = cnvs.getContext('2d');
-    let ctx2 = cnvs2.getContext('2d');
-    let ctx3 = cnvs3.getContext('2d');
     const GRID_SIZE = 4;
     const RESOLUTION = 128;
     const COLOR_SCALE = 250;
@@ -70,7 +62,7 @@
         Div.appendChild(cn);
       }
     }
-    drawGrid(cnvs2.width, cnvs2.height, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE, 2)
+    drawGrid(cnvs.width, cnvs.height, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE, 2)
   </script>
 </body>
 </html>
