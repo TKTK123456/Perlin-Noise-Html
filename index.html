@@ -45,6 +45,8 @@
         cn.width = w;
         cn.height = h;
         ct = cn.getContext('2d');
+        ct.fillStyle = 'hsl(0,0%,0%)';
+        ct.fillRect(0, 0, w, h);
         for (let y = 0; y < gs; y += num_pixels / gs) {
           for (let x = 0; x < gs; x += num_pixels / gs) {
             let v = parseInt(perlin.get(x+(g*cn.width), y+(g*cn.height)) * cs);
