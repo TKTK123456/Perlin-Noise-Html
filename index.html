@@ -57,12 +57,13 @@
         }
         yNum++;
       }
-     alert(await yNum)
-     alert(await xNums)
-    return map;
+     alert(yNum)
+     alert(xNums)
+      return map;
    }
     $(document).ready(async function(){
-      drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
+      await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
+      await getMap(cnvs2.width, cnvs2.height, GRID_SIZE, RESOLUTION, COLOR_SCALE)
     });
   </script>
 </body>
