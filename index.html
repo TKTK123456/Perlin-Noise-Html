@@ -50,7 +50,7 @@
         ct.fillRect(0, 0, w, h);
         for (let y = 0; y < gs; y += num_pixels / gs) {
           for (let x = 0; x < gs; x += num_pixels / gs) {
-            let v = parseInt(perlin.get(x+(g*cn.width), y+(g*cn.height)) * cs);
+            let v = parseInt(perlin.get(x+(g*cn.width), y) * cs);
             ct.fillStyle = 'hsl(' + v + ',50%,50%)';
             ct.fillRect(
               x / gs * w,
