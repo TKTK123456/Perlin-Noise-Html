@@ -43,15 +43,17 @@
       let pixel_size = ((w+h)/2) / r;
       let num_pixels = gs / r;
       for (let y = 0; y < gs; y += num_pixels / gs) {
+        let X = 0;
         for (let x = w; x < gs+w; x += num_pixels / gs) {
           let v = parseInt(perlin.get(x, y) * cs);
           ct.fillStyle = 'hsl(' + v + ',50%,50%)';
           ct.fillRect(
-            (x-w) / gs * w,
+            X / gs * w,
             y / gs * h,
             pixel_size,
             pixel_size
           );
+          X += num_pixels / gs;
         }
       }
      alert(w)
