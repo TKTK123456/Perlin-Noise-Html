@@ -9,7 +9,10 @@
 <body>
   <canvas id="cnvs" class="cnvs"></canvas>
   <br>
-  <div id="grid" class="Div"></div>
+  <div class="wrapper">
+    <div id="grid" class="firstDiv"></div>
+    <div id="buttons" class="secondDiv"></div>
+  </div>
   <script>
     'use strict';
     let cnvs = document.getElementById('cnvs');
@@ -20,7 +23,7 @@
     const RESOLUTION = 128;
     const COLOR_SCALE = 250;
     async function drawMap(w, h, cn, ct, gs, r, cs) {
-      let pixel_size = ((w+h)/2) / r;
+      let pixel_size = ((w + h) / 2) / r;
       let num_pixels = gs / r;
       for (let y = 0; y < gs; y += num_pixels / gs) {
         for (let x = 0; x < gs; x += num_pixels / gs) {
@@ -35,8 +38,8 @@
         }
       }
     }
-   async function getMap(w, h, gs, r, cs) {
-      let pixel_size = ((w+h)/2) / r;
+    async function getMap(w, h, gs, r, cs) {
+      let pixel_size = ((w + h) / 2) / r;
       let num_pixels = gs / r;
       let map = [];
       for (let y = 0; y < gs; y += num_pixels / gs) {
@@ -47,24 +50,32 @@
         }
       }
       return map;
-   }
-    async function drawGrid(w, h, Div, gs, r, cs) {
+    }
+    async function drawGrid(w, h, Div, gs, r, cs, Div2) {
       let map = await Promise.resolve(getMap(w, h, gs, r, cs)).then((value) => {
         return value;
       });
       let Y = 0;
       for (let g = 0; g < gs; g++) {
         let X = 0;
-        let y2,x2,x,y;
+        let y2, x2, x, y;
         for (let i = 0; i < gs; i++) {
           let canvas = document.createElement('canvas');
-          canvas.width = (w/gs)-2;
-          canvas.height = (h/gs)-2;
+          let canvas2 = document.createElement('canvas');
+          canvas.width = (w / gs) - 2;
+          canvas.height = (h / gs) - 2;
+          canvas2.width = (w / gs) - 2;
+          canvas2.height = (h / gs) - 2;
           canvas.style.width = canvas.width + 'px';
           canvas.style.height = canvas.height + 'px';
           canvas.style.border = '1px solid black';
+          canvas2.style.width = canvas2.width + 'px';
+          canvas2.style.height = canvas2.height + 'px';
+          canvas2.style.border = '1px solid black';
+          canvas2.setAttribute('hidden')
           let context = canvas.getContext('2d');
-          let pixel_size = ((canvas.width+canvas.height)/2) / r;
+          let context2 = canvas2.getContext('2d');
+          let pixel_size = ((canvas.width + canvas.height) / 2) / r;
           let num_pixels = 1 / r;
           for (y = 0, y2 = Y; y < 1; y += num_pixels / 1, y2 += num_pixels / 1) {
             for (x = 0, x2 = X; x < 1; x += num_pixels / 1, x2 += num_pixels / 1) {
@@ -79,17 +90,22 @@
             }
           }
           X = x2;
+          context2.textAlign = "center";
+          context2.fillText("Show", canvas2.width/2, canvas2.height/2);
           Div.appendChild(canvas);
-      }
+          Div2.appendChild(canvas2)
+        }
         Y = y2;
         let newLine = document.createElement('br');
         Div.appendChild(newLine)
+        Div2.appendChild(newLine)
       }
     }
-    $(document).ready(async function(){
+    $(document).ready(async function () {
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
-      await drawGrid(1000, 712, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE)
+      await drawGrid(1000, 712, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE, document.getElementById('buttons'))
     });
   </script>
 </body>
+
 </html>

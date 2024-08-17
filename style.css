@@ -2,6 +2,7 @@ html {
   height: 100%;
   width: 100%;
 }
+
 .cnvs {
   width: 1000px;
   height: 712px;
@@ -10,11 +11,22 @@ html {
   margin-right: auto;
   background-color: black;
 }
-.Div {
+
+
+.wrapper {
+  white-space: nowrap
+}
+
+.firstDiv,
+.secondDiv {
   width: 1000px;
   height: 712px;
-  display: block;
+  display: inline-block;
   margin-left: auto;
   margin-right: auto;
   background-color: black;
+}
+
+.secondDiv {
+  transform: translateX(-100%)
 }
