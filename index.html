@@ -82,7 +82,6 @@
     }
     let gridToggles = []
     async function toggleGridItem(X, Y, w, h, gs, r, cs, context, itemX, itemY) {
-      alert("Toggling")
       if (gridToggles[itemX][itemY] === 0) {
         gridToggles[itemX][itemY] = 1;
         await drawGridItem(X, Y, w, h, gs, r, cs, context);
@@ -90,6 +89,11 @@
         gridToggles[itemX][itemY] = 0;
         await drawBlankGridItem(w, h, gs, r, cs, context);
       }
+    }
+    async function runToggleGridItem(itemX, itemY, w, h, r, cs, X, Y) {
+      let canvas = document.getElementById(`gridItem${itemX}${itemY}`);
+      let context = canvas.getContext('2d');
+      await toggleGridItem(parseInt(X), parseInt(Y), parseInt(w), parseInt(h), 1, parseInt(r), parseInt(cs), context, parseInt(itemX), parseInt(itemY))
     }
     async function drawGrid(w, h, Div, gs, r, cs) {
       let Y = 0;
@@ -105,8 +109,9 @@
           canvas.style.width = canvas.width + 'px';
           canvas.style.height = canvas.height + 'px';
           canvas.style.border = '1px solid black';
+          canvas.setAttribute("id", "gridItem" + g + i)
           let context = canvas.getContext('2d');
-          canvas.setAttribute("onclick",`alert("toggle pressed")`);
+          canvas.setAttribute("onclick",`runToggleGridItem("${g}", "${i}", "${canvas.width}", "${canvas.height}", "${r}", "${cs}", "${X}", "${Y}")`);
           let pixel_size = ((canvas.width + canvas.height) / 2) / r;
           let num_pixels = 1 / r;
           for (y = 0, y2 = Y; y < 1; y += num_pixels / 1, y2 += num_pixels / 1) {
