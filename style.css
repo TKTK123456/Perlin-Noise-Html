@@ -11,22 +11,20 @@ html {
   margin-right: auto;
   background-color: black;
 }
-
-
-.wrapper {
-  white-space: nowrap
-}
-
-.firstDiv,
-.secondDiv {
+.Div {
   width: 1000px;
   height: 712px;
-  display: inline-block;
+  display: block;
   margin-left: auto;
   margin-right: auto;
   background-color: black;
 }
-
-.secondDiv {
-  transform: translateX(-100%)
+.Div2 {
+  width: 1000px;
+  height: 712px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: black;
+  position: relative;
 }
