@@ -38,18 +38,17 @@
    async function getMap(w, h, gs, r, cs) {
       let pixel_size = ((w+h)/2) / r;
       let num_pixels = gs / r;
-     alert("works here too")
       let map = [];
       for (let y = 0; y < gs; y += num_pixels / gs) {
+        map[y] = []
         for (let x = 0; x < gs; x += num_pixels / gs) {
           let v = parseInt(perlin.get(x, y) * cs);
-          map.push(v);
+          map[y][x] = v;
         }
       }
       return map;
    }
     async function drawGrid(w, h, Div, gs, r, cs) {
-      alert("Works here")
       let map = await Promise.resolve(getMap(w, h, gs, r, cs)).then((value) => {
         return value;
       });
@@ -65,7 +64,7 @@
           let num_pixels = 1 / r;
           for (let y = 0; y < 1; y += num_pixels / 1) {
             for (let x = 0; x < 1; x += num_pixels / 1) {
-              let v = map[x*gs+y];
+              let v = map[y][x];
               context.fillStyle = 'hsl(' + v + ',50%,50%)';
               context.fillRect(
                 x / 1 * canvas.width,
@@ -77,6 +76,8 @@
           }
           Div.appendChild(canvas);
       }
+        let newLine = document.createElement('br');
+        Div.appendChild(newLine)
       }
     }
     $(document).ready(async function(){
