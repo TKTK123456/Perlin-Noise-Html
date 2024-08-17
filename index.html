@@ -106,7 +106,7 @@
           canvas.style.height = canvas.height + 'px';
           canvas.style.border = '1px solid black';
           let context = canvas.getContext('2d');
-          canvas.setAttribute("onclick",`toggleGridItem(${X}, ${Y}, ${canvas.width}, ${canvas.height}, 1, ${r}, ${cs}, ${context}, ${g}, ${i})`);
+          canvas.setAttribute("onclick",`alert("toggle pressed")`);
           let pixel_size = ((canvas.width + canvas.height) / 2) / r;
           let num_pixels = 1 / r;
           for (y = 0, y2 = Y; y < 1; y += num_pixels / 1, y2 += num_pixels / 1) {
