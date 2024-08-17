@@ -44,6 +44,9 @@
         for (let x = 0; x < gs; x += num_pixels / gs) {
           let v = parseInt(perlin.get(x, y) * cs);
           map[i] = v
+          if (i===0) {
+            alert(perlin.get(x, y) * cs)
+          }
           i++
         }
       }
