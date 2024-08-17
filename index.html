@@ -38,6 +38,7 @@
    async function getMap(w, h, gs, r, cs) {
       let pixel_size = ((w+h)/2) / r;
       let num_pixels = gs / r;
+     alert("works here too")
       let map = [];
       for (let y = 0; y < gs; y += num_pixels / gs) {
         for (let x = 0; x < gs; x += num_pixels / gs) {
@@ -49,7 +50,7 @@
    }
     async function drawGrid(w, h, Div, gs, r, cs) {
       alert("Works here")
-      let map = await Promise.resovle(getMap(w, h, gs, r, cs)).then((value) => {
+      let map = await Promise.resolve(getMap(w, h, gs, r, cs)).then((value) => {
         return value;
       });
       for (let g = 0; g < gs; g++) {
