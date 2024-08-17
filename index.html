@@ -40,10 +40,9 @@
       let num_pixels = gs / r;
       let map = [];
       for (let y = 0; y < gs; y += num_pixels / gs) {
-        map[y] = [];
         for (let x = 0; x < gs; x += num_pixels / gs) {
           let v = parseInt(perlin.get(x, y) * cs);
-          map[y][x] = v;
+          map.push(v);
         }
       }
       return map;
@@ -65,7 +64,7 @@
           let num_pixels = 1 / r;
           for (let y = 0; y < 1; y += num_pixels / 1) {
             for (let x = 0; x < 1; x += num_pixels / 1) {
-              let v = map[y][x];
+              let v = map[x*gs+y];
               context.fillStyle = 'hsl(' + v + ',50%,50%)';
               context.fillRect(
                 x / 1 * canvas.width,
@@ -81,7 +80,7 @@
     }
     $(document).ready(async function(){
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
-      await drawGrid(480, 480, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE)
+      await drawGrid(480, 480, document.getElementById('grid'), GRID_SIZE, RESOLUTION)
     });
   </script>
 </body>
