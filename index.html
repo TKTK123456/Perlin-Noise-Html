@@ -55,6 +55,7 @@
       let Y = 0;
       for (let g = 0; g < gs; g++) {
         let X = 0;
+        let y2,x2,x,y;
         for (let i = 0; i < gs; i++) {
           let canvas = document.createElement('canvas');
           canvas.width = w/(gs*gs);
@@ -64,7 +65,6 @@
           let context = canvas.getContext('2d');
           let pixel_size = ((canvas.width+canvas.height)/2) / r;
           let num_pixels = 1 / r;
-          let y2,x2,x,y;
           for (y = 0, y2 = Y; y < 1; y += num_pixels / 1, y2 += num_pixels / 1) {
             for (x = 0, x2 = X; x < 1; x += num_pixels / 1, x2 += num_pixels / 1) {
               let v = map[y2][x2];
@@ -78,9 +78,9 @@
             }
           }
           X = x2;
-          Y = y2;
           Div.appendChild(canvas);
       }
+        Y = y2;
         let newLine = document.createElement('br');
         Div.appendChild(newLine)
       }
