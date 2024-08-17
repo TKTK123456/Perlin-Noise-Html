@@ -58,10 +58,10 @@
         let y2,x2,x,y;
         for (let i = 0; i < gs; i++) {
           let canvas = document.createElement('canvas');
-          canvas.width = w/(gs*gs);
-          canvas.height = h/(gs*gs);
-          canvas.style.width = w/(gs*gs) + 'px';
-          canvas.style.height = h/(gs*gs) + 'px';
+          canvas.width = w/gs;
+          canvas.height = h/gs;
+          canvas.style.width = w/gs + 'px';
+          canvas.style.height = h/gs + 'px';
           let context = canvas.getContext('2d');
           let pixel_size = ((canvas.width+canvas.height)/2) / r;
           let num_pixels = 1 / r;
