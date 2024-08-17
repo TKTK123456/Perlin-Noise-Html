@@ -52,8 +52,9 @@
       let map = await Promise.resolve(getMap(w, h, gs, r, cs)).then((value) => {
         return value;
       });
+      let Y = 0;
       for (let g = 0; g < gs; g++) {
-        let Y = 0;
+        let X = 0;
         for (let i = 0; i < gs; i++) {
           let canvas = document.createElement('canvas');
           canvas.width = w/(gs*gs);
@@ -63,9 +64,9 @@
           let context = canvas.getContext('2d');
           let pixel_size = ((canvas.width+canvas.height)/2) / r;
           let num_pixels = 1 / r;
-          for (let y = 0; y < 1; y += num_pixels / 1, Y += num_pixels / 1) {
-            let X = 0;
-            for (let x = 0; x < 1; x += num_pixels / 1, X += num_pixels / 1) {
+          let y,x;
+          for (y = Y; y < (Y+1); y += num_pixels / 1) {
+            for (x = X; x < (X+1); x += num_pixels / 1) {
               let v = map[Y][X];
               context.fillStyle = 'hsl(' + v + ',50%,50%)';
               context.fillRect(
@@ -76,6 +77,8 @@
               );
             }
           }
+          Y = y;
+          X = x;
           Div.appendChild(canvas);
       }
         let newLine = document.createElement('br');
