@@ -10,12 +10,11 @@ html {
   margin-right: auto;
   background-color: black;
 }
-.center {
+.Div {
+  width: 1000px;
+  height: 712px;
   display: block;
   margin-left: auto;
   margin-right: auto;
   background-color: black;
-}
-.border {
-  border: 1px solid black;
 }
