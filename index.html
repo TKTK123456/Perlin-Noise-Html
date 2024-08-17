@@ -10,7 +10,6 @@
   <canvas id="cnvs" class="cnvs"></canvas>
   <br>
   <div id="grid" class="Div"></div>
-  <div id="buttons" class="Div2"></div>
   <script>
     'use strict';
     let cnvs = document.getElementById('cnvs');
@@ -49,7 +48,7 @@
       }
       return map;
     }
-    async function drawGrid(w, h, Div, gs, r, cs, Div2) {
+    async function drawGrid(w, h, Div, gs, r, cs) {
       let map = await Promise.resolve(getMap(w, h, gs, r, cs)).then((value) => {
         return value;
       });
@@ -59,20 +58,12 @@
         let y2, x2, x, y;
         for (let i = 0; i < gs; i++) {
           let canvas = document.createElement('canvas');
-          let canvas2 = document.createElement('canvas');
           canvas.width = (w / gs) - 2;
           canvas.height = (h / gs) - 2;
-          canvas2.width = (w / gs) - 2;
-          canvas2.height = (h / gs) - 2;
           canvas.style.width = canvas.width + 'px';
           canvas.style.height = canvas.height + 'px';
           canvas.style.border = '1px solid black';
-          canvas2.style.width = canvas2.width + 'px';
-          canvas2.style.height = canvas2.height + 'px';
-          canvas2.style.border = '1px solid black';
-          canvas2.setAttribute('hidden')
           let context = canvas.getContext('2d');
-          let context2 = canvas2.getContext('2d');
           let pixel_size = ((canvas.width + canvas.height) / 2) / r;
           let num_pixels = 1 / r;
           for (y = 0, y2 = Y; y < 1; y += num_pixels / 1, y2 += num_pixels / 1) {
@@ -88,20 +79,16 @@
             }
           }
           X = x2;
-          context2.textAlign = "center";
-          context2.fillText("Show", canvas2.width/2, canvas2.height/2);
           Div.appendChild(canvas);
-          Div2.appendChild(canvas2)
         }
         Y = y2;
         let newLine = document.createElement('br');
         Div.appendChild(newLine)
-        Div2.appendChild(newLine)
       }
     }
     $(document).ready(async function () {
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
-      await drawGrid(1000, 712, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE, document.getElementById('buttons'))
+      await drawGrid(1000, 712, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE)
     });
   </script>
 </body>
