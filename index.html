@@ -64,10 +64,10 @@
           let context = canvas.getContext('2d');
           let pixel_size = ((canvas.width+canvas.height)/2) / r;
           let num_pixels = 1 / r;
-          let y,x;
-          for (y = Y; y < (Y+1); y += num_pixels / 1) {
-            for (x = X; x < (X+1); x += num_pixels / 1) {
-              let v = map[Y][X];
+          let y2,x2,x,y;
+          for (y = 0, y2 = Y; y < 1; y += num_pixels / 1, y2 += num_pixels / 1) {
+            for (x = 0, x2 = X; x < 1; x += num_pixels / 1, x2 += num_pixels / 1) {
+              let v = map[y2][x2];
               context.fillStyle = 'hsl(' + v + ',50%,50%)';
               context.fillRect(
                 x / 1 * canvas.width,
@@ -77,8 +77,8 @@
               );
             }
           }
-          Y = y;
-          X = x;
+          X = x2;
+          Y = y2;
           Div.appendChild(canvas);
       }
         let newLine = document.createElement('br');
