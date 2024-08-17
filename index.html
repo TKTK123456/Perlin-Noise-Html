@@ -49,9 +49,6 @@
       return map;
     }
     async function drawGrid(w, h, Div, gs, r, cs) {
-      let map = await Promise.resolve(getMap(w, h, gs, r, cs)).then((value) => {
-        return value;
-      });
       let Y = 0;
       for (let g = 0; g < gs; g++) {
         let X = 0;
@@ -68,7 +65,7 @@
           let num_pixels = 1 / r;
           for (y = 0, y2 = Y; y < 1; y += num_pixels / 1, y2 += num_pixels / 1) {
             for (x = 0, x2 = X; x < 1; x += num_pixels / 1, x2 += num_pixels / 1) {
-              let v = map[y2][x2];
+              let v = parseInt(perlin.get(x2, y2) * cs);
               context.fillStyle = 'hsl(' + v + ',50%,50%)';
               context.fillRect(
                 x / 1 * canvas.width,
