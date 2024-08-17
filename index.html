@@ -38,16 +38,13 @@
    async function getMap(w, h, gs, r, cs) {
       let pixel_size = ((w+h)/2) / r;
       let num_pixels = gs / r;
+     alert(pixel_size)
+     alert(num_pixels)
       let map = [];
-     let i = 0
       for (let y = 0; y < gs; y += num_pixels / gs) {
         for (let x = 0; x < gs; x += num_pixels / gs) {
           let v = parseInt(perlin.get(x, y) * cs);
-          map[i] = v
-          if (i===0) {
-            alert(perlin.get(x, y) * cs)
-          }
-          i++
+          map.push(v);
         }
       }
       return map;
@@ -56,7 +53,6 @@
       let map = await Promise.resolve(getMap(w, h, gs, r, cs)).then((value) => {
         return value;
       });
-      alert(map)
       for (let g = 0; g < gs; g++) {
         for (let i = 0; i < gs; i++) {
           let canvas = document.createElement('canvas');
