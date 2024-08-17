@@ -43,9 +43,11 @@
         for (let x = 0; x < gs; x += num_pixels / gs) {
           let v = parseInt(perlin.get(x, y) * cs);
           map.push(v);
+          if (x=0) {
+            alert(v)
+          }
         }
       }
-     alert(map)
       return map;
    }
     async function drawGrid(w, h, Div, gs, r, cs) {
