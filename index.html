@@ -25,9 +25,6 @@
       for (let y = 0; y < gs; y += num_pixels / gs) {
         for (let x = 0; x < gs; x += num_pixels / gs) {
           let v = parseInt(perlin.get(x, y) * cs);
-          if (x === 0) {
-            alert(v)
-          }
           ct.fillStyle = 'hsl(' + v + ',50%,50%)';
           ct.fillRect(
             x / gs * w,
@@ -85,6 +82,7 @@
       }
     }
     $(document).ready(async function(){
+      alert(await getMap(w, h, gs, r, cs))
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
       await drawGrid(480, 480, document.getElementById('grid'), GRID_SIZE, RESOLUTION)
     });
