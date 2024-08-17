@@ -82,6 +82,7 @@
     }
     let gridToggles = []
     async function toggleGridItem(X, Y, w, h, gs, r, cs, context, itemX, itemY) {
+      alert("Toggling")
       if (gridToggles[itemX][itemY] === 0) {
         gridToggles[itemX][itemY] = 1;
         await drawGridItem(X, Y, w, h, gs, r, cs, context);
