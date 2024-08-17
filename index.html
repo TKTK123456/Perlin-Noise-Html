@@ -62,6 +62,7 @@
           canvas.height = h/gs;
           canvas.style.width = w/gs + 'px';
           canvas.style.height = h/gs + 'px';
+          canvas.style.border = '1px solid black';
           let context = canvas.getContext('2d');
           let pixel_size = ((canvas.width+canvas.height)/2) / r;
           let num_pixels = 1 / r;

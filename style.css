@@ -16,3 +16,6 @@ html {
   margin-right: auto;
   background-color: black;
 }
+.border {
+  border: 1px solid black;
+}
