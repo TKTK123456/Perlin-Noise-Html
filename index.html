@@ -38,8 +38,6 @@
    async function getMap(w, h, gs, r, cs) {
       let pixel_size = ((w+h)/2) / r;
       let num_pixels = gs / r;
-     alert(pixel_size)
-     alert(num_pixels)
       let map = [];
       for (let y = 0; y < gs; y += num_pixels / gs) {
         for (let x = 0; x < gs; x += num_pixels / gs) {
