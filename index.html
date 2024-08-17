@@ -82,9 +82,8 @@
       }
     }
     $(document).ready(async function(){
-      alert(getMap(w, h, gs, r, cs))
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
-      await drawGrid(480, 480, document.getElementById('grid'), GRID_SIZE, RESOLUTION)
+      await drawGrid(480, 480, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE)
     });
   </script>
 </body>
