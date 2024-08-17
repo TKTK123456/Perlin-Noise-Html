@@ -25,6 +25,9 @@
       for (let y = 0; y < gs; y += num_pixels / gs) {
         for (let x = 0; x < gs; x += num_pixels / gs) {
           let v = parseInt(perlin.get(x, y) * cs);
+          if (x === 0) {
+            alert(v)
+          }
           ct.fillStyle = 'hsl(' + v + ',50%,50%)';
           ct.fillRect(
             x / gs * w,
