@@ -80,15 +80,38 @@
         }
       }
     }
+    async function drawBlackAndWhiteGridItem(w, h, gs, r, cs, context) {
+      let pixel_size = ((w + h) / 2) / r;
+      let num_pixels = gs / r;
+      for (let y = 0; y < gs; y += num_pixels / gs) {
+        for (let x = 0; x < gs; x += num_pixels / gs) {
+          let v = parseInt(perlin.get(x2, y2) * cs);
+          if (v > 0.5) {
+          context.fillStyle = 'hsl(0,0%,0%)';
+          } else {
+            context.fillStyle = 'hsl(0, 0%, 100%)'
+          }
+          context.fillRect(
+            x / gs * w,
+            y / gs * h,
+            pixel_size,
+            pixel_size
+          );
+        }
+      }
+    }
     let gridToggles = []
     async function toggleGridItem(X, Y, w, h, gs, r, cs, context, itemX, itemY) {
       context.clearRect(0, 0, w, h)
       if (gridToggles[itemX][itemY] === 0) {
         gridToggles[itemX][itemY] = 1;
         await drawGridItem(X, Y, w, h, gs, r, cs, context);
+      } else if(gridToggles[itemX][itemY] === 1) {
+        gridToggles[itemX][itemY] = 2;
+        await drawBlankGridItem(w, h, gs, r, cs, context);
       } else {
         gridToggles[itemX][itemY] = 0;
-        await drawBlankGridItem(w, h, gs, r, cs, context);
+        await drawBlackAndWhiteGridItem(w, h, gs, r, cs, context);
       }
     }
     async function runToggleGridItem(itemX, itemY, w, h, r, cs, X, Y) {
