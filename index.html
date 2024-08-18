@@ -173,13 +173,14 @@
     async function drawCube(canvas, w, h, X, Z, Y) {
       alert("works here")
       fov = 40;
+      let i;
       let ctx3D = canvas.getContext('2d');
       let verts = [];
-      for (let i = 0; i < 8; i++) {
+      for (i = 0; i < 8; i++) {
         verts[i] = []
       }
       let i1;
-      for (let i = 0, i1 = -50; i < 2; i++, i1 += 100) {
+      for (i = 0, i1 = -50; i < 2; i++, i1 += 100) {
         let x = await getPointX(w, h, X - 50, Y - 50, Z + i1, fov);
         let y = await getPointY(w, h, X - 50, Y - 50, Z + i1, fov);
         verts[0 + (i * 4)].push(x);
