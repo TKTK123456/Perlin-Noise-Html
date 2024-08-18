@@ -20,22 +20,3 @@ html {
   margin-right: auto;
   background-color: black;
 }
-
-.Div2 {
-  width: 1000px;
-  height: 712px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: black;
-  position: relative;
-}
-.Iframe {
-  width: 1000px;
-  height: 712px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: black;
-  position: relative;
-}
