@@ -108,10 +108,10 @@
         await drawGridItem(X, Y, w, h, gs, r, cs, context);
       } else if(gridToggles[itemX][itemY] === 1) {
         gridToggles[itemX][itemY] = 2;
-        await drawBlankGridItem(w, h, gs, r, cs, context);
+        await drawBlackAndWhiteGridItem(w, h, gs, r, cs, context);
       } else {
         gridToggles[itemX][itemY] = 0;
-        await drawBlackAndWhiteGridItem(w, h, gs, r, cs, context);
+        await drawBlankGridItem(w, h, gs, r, cs, context);
       }
     }
     async function runToggleGridItem(itemX, itemY, w, h, r, cs, X, Y) {
