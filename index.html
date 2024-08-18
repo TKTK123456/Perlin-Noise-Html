@@ -4,7 +4,6 @@
   <script src='perlin.js'></script>
   <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script scr="3D.js"></script>
 </head>
 
 <body>
@@ -155,7 +154,6 @@
     $(document).ready(async function () {
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
       await drawGrid(1000, 712, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE)
-      await zengine.render(gen_world(), cam, cnvs3D, false, Infinity, light);
     });
   </script>
 </body>
