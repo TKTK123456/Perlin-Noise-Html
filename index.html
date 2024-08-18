@@ -88,15 +88,21 @@
           let v = parseInt(perlin.get(x2, y2) * cs);
           if (v > 0.5) {
           context.fillStyle = 'hsl(0,0%,0%)';
+            context.fillRect(
+              x / gs * w,
+              y / gs * h,
+              pixel_size,
+              pixel_size
+            );
           } else {
-            context.fillStyle = 'hsl(0, 0%, 100%)'
+            context.fillStyle = 'hsl(0, 0%, 100%)';
+            context.fillRect(
+              x / gs * w,
+              y / gs * h,
+              pixel_size,
+              pixel_size
+            );
           }
-          context.fillRect(
-            x / gs * w,
-            y / gs * h,
-            pixel_size,
-            pixel_size
-          );
         }
       }
     }
@@ -127,7 +133,7 @@
         gridToggles[g] = []
         for (let i = 0; i < gs; i++) {
           let canvas = document.createElement('canvas');
-          gridToggles[g][i] = 1;
+          gridToggles[g][i] = 2;
           canvas.width = (w / gs) - 2;
           canvas.height = (h / gs) - 2;
           canvas.style.width = canvas.width + 'px';
