@@ -151,9 +151,39 @@
         Div.appendChild(newLine)
       }
     }
+    class Point {
+      constructor(x, y, z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+      }
+    }
+    async function drawCube(x, y, z, r, cs, canvas, w, h) {
+      let ctx3D = canvas.getContext('2d');
+      let cube = [
+        new Point(x[1], y[1], z[1]), new Point(x[2], y[2], z[2]), new Point(x[3], y[3], z[3]), new Point(x[4], y[4], z[4]),
+        new Point(x[5], y[5], z[5]), new Point(x[6], y[6], z[6]), new Point(x[7], y[7], z[7]), new Point(x[8], y[8], z[8])
+      ];
+      let vertecies = cube
+      let scale = 200;
+      let projectedX, projectedY, X, Y, Z, point;
+      let centerX = w / 2;
+      let centerY = h / 2;
+      ctx3D.fillStyle = "blue";
+      for (let a = 0; a < vertecies.length; a++) {
+        point = vertecies[a];
+        ctx3D.beginPath();
+        projectedX = centerX + point.X * scale / (point.Z + scale);
+        projectedY = centerY + point.Y * scale / (point.Z + scale);
+        ctx3D.arc(projectedX, projectedY, 5, 0, 2 * Math.PI);
+        ctx3D.fill();
+        ctx3D.closePath();
+      }
+    }
     $(document).ready(async function () {
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
       await drawGrid(1000, 712, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE)
+      await drawCube([-50, 50, 50, -50, -50, 50, 50, -50], [-50, -50, 50, 50, -50, -50, 50, 50], [-50, -50, -50, -50, 50, 50, 50, 50], RESOLUTION, COLOR_SCALE, document.getElementById("cnvs3D"), 1000, 712)
     });
   </script>
 </body>
