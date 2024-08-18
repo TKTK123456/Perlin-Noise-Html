@@ -2,8 +2,8 @@
 
 let zengine = {
   render: function(world, cam, canvas, wireframe, horizon, light) {
-    let ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let ctx3D = canvas.getContext('2d');
+    ctx3D.clearRect(0, 0, canvas.width, canvas.height);
 
     //create cartesian unit vector representations from polar light and cam vects
     let cam_vect = this.polar_to_cart(this.to_rad(cam.yaw), this.to_rad(cam.pitch));
@@ -62,24 +62,24 @@ let zengine = {
       }));
 
       //draw the face on the canvas
-      ctx.strokeStyle = wireframe ? 'white' : 'black';
-      ctx.beginPath();
-      ctx.moveTo(cos[0].x, cos[0].y);
+      ctx3D.strokeStyle = wireframe ? 'white' : 'black';
+      ctx3D.beginPath();
+      ctx3D.moveTo(cos[0].x, cos[0].y);
       for (let i = 1; i < cos.length; i++) {
-        ctx.lineTo(cos[i].x, cos[i].y);
+        ctx3D.lineTo(cos[i].x, cos[i].y);
       }
-      ctx.closePath(); ctx.stroke();
+      ctx3D.closePath(); ctx3D.stroke();
       if (!wireframe) {
         if (has_vects) {
           let angle = -this.dot_prod(light_vect || world[f].c_vect /*cam_vect*/, world[f].vect);
           if (angle < 0) angle = 0;
           let s = world[f].col.s * (light ? (light.min_saturation + (1 - light.min_saturation) * angle) : angle);
           let l = world[f].col.l * (light ? (light.min_lightness + (1 - light.min_lightness) * angle) : angle);
-          ctx.fillStyle = 'hsl(' + world[f].col.h + ',' + s + '%,' + l + '%)';
+          ctx3D.fillStyle = 'hsl(' + world[f].col.h + ',' + s + '%,' + l + '%)';
         } else {
-          ctx.fillStyle = world[f].col;
+          ctx3D.fillStyle = world[f].col;
         }
-        ctx.fill();
+        ctx3D.fill();
       }
     }
   },
