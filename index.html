@@ -192,18 +192,20 @@
       cam.x = w / 2;
       cam.y = -20;
       cam.z = 20;
+      perlin.set3DLengthAndWidthAndHeight(w2, h2, 8);
       let canvas = document.createElement('canvas');
       canvas.width = w;
       canvas.height = h;
       canvas.style.width = canvas.width + 'px';
       canvas.style.height = canvas.height + 'px';
       canvas.setAttribute("id", "3Dcanvas")
-      zengine.render(gen_world(), cam, canvas, false, Infinity, light)
-
+      zengine.render(gen_world(gs), cam, canvas, false, Infinity, light)
+      Div.appendChild(canvas);
     }
     $(document).ready(async function () {
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
       await drawGrid(1000, 712, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE)
+      await draw3D(1000, 712, document.getElementById('3Dgrid'), GRID_SIZE, RESOLUTION, COLOR_SCALE, 32, 32)
     });
   </script>
 </body>
