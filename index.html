@@ -158,14 +158,14 @@
     }
     async function getPointX(w, h, x, y, z, fov) {
       let pitch = atan((x - cam.x) / (y - cam.y));
-      let yaw   = atan((z - cam.z) / (y - cam.y));
+      let yaw = atan((z - cam.z) / (y - cam.y));
       let X = width / 2 + (pitch * (width / fov));
       let Y = height / 2 + (yaw * (height / fov));
       return X
     }
     async function getPointY(w, h, x, y, z, fov) {
       let pitch = atan((x - cam.x) / (y - cam.y));
-      let yaw   = atan((z - cam.z) / (y - cam.y));
+      let yaw = atan((z - cam.z) / (y - cam.y));
       let X = width / 2 + (pitch * (width / fov));
       let Y = height / 2 + (yaw * (height / fov));
       return Y
@@ -197,13 +197,15 @@
         verts[3 + (i * 4)].push(x);
         verts[3 + (i * 4)].push(y);
       }
-      ctx3D.moveTo(verts[0][0],verts[0][1]);
+      ctx3D.moveTo(verts[0][0], verts[0][1]);
       for (let z = 0; z < 2; z++) {
         for (let x = 0; x < 4; x++) {
-            ctx3D.fillStyle("blue")
-            ctx3D.lineTo(verts[z * 4 + x][0], verts[z * 4 + x][1])
+          ctx3D.fillStyle("blue")
+          ctx3D.lineTo(verts[z * 4 + x][0], verts[z * 4 + x][1])
+          ctx3D.stroke();
         }
-        ctx3D.lineTo((verts[0][0],verts[0][1]))
+        ctx3D.lineTo((verts[0][0], verts[0][1]))
+        ctx3D.stroke();
       }
       ctx3D.stroke();
     }
