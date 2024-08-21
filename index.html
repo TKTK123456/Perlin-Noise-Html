@@ -206,6 +206,7 @@
     }
     async function draw3DStuffWithAnimation(drawIn, w, h, fov, rx, ry, rz) {
       let drawInCtx = drawIn.getContext('2d');
+      alert(`rx: ${rx}, ry: ${ry}, rz: ${rz}`)
       const width = w;
       const height = h;
       const v1 = new pointWithRotation(-25, -25, 25, width, height, fov, rx*30, ry*30, rz);
