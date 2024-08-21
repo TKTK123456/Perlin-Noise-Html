@@ -156,22 +156,21 @@
       y: 0,
       z: 0,
     }
-    async function getPointX(w, h, X, Y, Z, fov) {
-      pitch = atan((X - cam.x) / (Y - cam.y));
-      yaw = atan((Z - cam.z) / (Y - cam.y));
-      x = w / 2 + (pitch * (w / fov))
-      y = h / 2 + (yaw * (h / fov))
-      return x;
+    async function getPointX(w, h, x, y, z, fov) {
+      let pitch = atan((x - cam.x) / (y - cam.y));
+      let yaw   = atan((z - cam.z) / (y - cam.y));
+      let X = width / 2 + (pitch * (width / fov));
+      let Y = height / 2 + (yaw * (height / fov));
+      return X
     }
-    async function getPointY(w, h, X, Y, Z, fov) {
-      pitch = atan((X - cam.x) / (Y - cam.y));
-      yaw = atan((Z - cam.z) / (Y - cam.y));
-      x = w / 2 + (pitch * (w / fov))
-      y = h / 2 + (yaw * (h / fov))
-      return y;
+    async function getPointY(w, h, x, y, z, fov) {
+      let pitch = atan((x - cam.x) / (y - cam.y));
+      let yaw   = atan((z - cam.z) / (y - cam.y));
+      let X = width / 2 + (pitch * (width / fov));
+      let Y = height / 2 + (yaw * (height / fov));
+      return Y
     }
-    async function drawCube(canvas, w, h, X, Z, Y) {
-      alert("works here")
+    async function drawCube(canvas, w, h, X, Y, Z) {
       fov = 40;
       let i;
       let ctx3D = canvas.getContext('2d');
@@ -198,7 +197,6 @@
         verts[3 + (i * 4)].push(x);
         verts[3 + (i * 4)].push(y);
       }
-      alert("here too")
       ctx3D.moveTo(verts[0][0],verts[0][1]);
       for (let z = 0; z < 2; z++) {
         for (let x = 0; x < 4; x++) {
