@@ -159,56 +159,28 @@
     async function getPointX(w, h, x, y, z, fov) {
       let pitch = atan((x - cam.x) / (y - cam.y));
       let yaw = atan((z - cam.z) / (y - cam.y));
-      let X = width / 2 + (pitch * (width / fov));
-      let Y = height / 2 + (yaw * (height / fov));
+      let X = w / 2 + (pitch * (w / fov));
+      let Y = h / 2 + (yaw * (h / fov));
       return X
     }
     async function getPointY(w, h, x, y, z, fov) {
-      let pitch = atan((x - cam.x) / (y - cam.y));
-      let yaw = atan((z - cam.z) / (y - cam.y));
-      let X = width / 2 + (pitch * (width / fov));
-      let Y = height / 2 + (yaw * (height / fov));
+      let pitch = atan((x - cam.x) / (z - cam.z));
+      let yaw = atan((y - cam.y) / (z - cam.z));
+      let X = w / 2 + (pitch * (w / fov));
+      let Y = h / 2 + (yaw * (h / fov));
       return Y
     }
     async function drawCube(canvas, w, h, X, Y, Z) {
       fov = 40;
-      let i;
       let ctx3D = canvas.getContext('2d');
-      let verts = [];
-      for (i = 0; i < 8; i++) {
-        verts[i] = []
-      }
-      let i1;
-      for (i = 0, i1 = -50; i < 2; i++, i1 += 100) {
-        let x = await getPointX(w, h, X - 50, Y - 50, Z + i1, fov);
-        let y = await getPointY(w, h, X - 50, Y - 50, Z + i1, fov);
-        verts[0 + (i * 4)].push(x);
-        verts[0 + (i * 4)].push(y);
-        x = await getPointX(w, h, X - 50, Y + 50, Z + i1, fov);
-        y = await getPointY(w, h, X - 50, Y + 50, Z + i1, fov);
-        verts[1 + (i * 4)].push(x);
-        verts[1 + (i * 4)].push(y);
-        x = await getPointX(w, h, X + 50, Y + 50, Z + i1, fov);
-        y = await getPointY(w, h, X + 50, Y + 50, Z + i1, fov);
-        verts[2 + (i * 4)].push(x);
-        verts[2 + (i * 4)].push(y);
-        x = await getPointX(w, h, X + 50, Y - 50, Z + i1, fov);
-        y = await getPointY(w, h, X + 50, Y - 50, Z + i1, fov);
-        verts[3 + (i * 4)].push(x);
-        verts[3 + (i * 4)].push(y);
-      }
-      ctx3D.moveTo(verts[0][0], verts[0][1]);
-      for (let z = 0; z < 2; z++) {
-        for (let x = 0; x < 4; x++) {
-          ctx3D.fillStyle("blue")
-          ctx3D.lineTo(verts[z * 4 + x][0], verts[z * 4 + x][1])
-          ctx3D.stroke();
-        }
-        ctx3D.lineTo((verts[0][0], verts[0][1]))
-        ctx3D.stroke();
-      }
+      let x = await getPointX(w, h, X-50, Y, Z, fov);
+      let y = await getPointY(w, h, X-50, Y, Z, fov);
+      let x2 = await getPointX(w, h, X+50, Y, Z+50, fov);
+      let y2 = await getPointY(w, h, X+50, Y, Z+50, fov);
+      ctx3D.moveTo(x, y);
+      ctx3D.lineTo(x2, y2);
+      ctx3D.strokeStyle = "red";
       ctx3D.stroke();
-    }
     $(document).ready(async function () {
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
       await drawGrid(1000, 712, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE)
