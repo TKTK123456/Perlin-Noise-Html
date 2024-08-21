@@ -159,13 +159,11 @@
       let x1 = x * Math.cos(rz) - y * Math.sin(rz);
       let y1 = x * Math.sin(rz) + y * Math.cos(rz);
       let z1 = z;
-      let x2 = x1 * Math.cos(ry) - z1 * Math.sin(ry);
-      let y2 = y1;
-      let z2 = x1 * Math.sin(ry) + z1 * Math.cos(ry);
-      let x3 = x2;
-      let y3 = y2 * Math.cos(rx) - z2 * Math.sin(rx);
-      let z3 = y2 * Math.sin(rx) + z2 * Math.cos(rx);
-      let point = new point(x3, y3, z3, w, h, fov);
+      x1 = z1 * Math.cos(ry) - x1 * Math.sin(ry);
+      z1 = z1 * Math.sin(ry) + x1 * Math.cos(ry);
+      y1 = y1 * Math.cos(rx) - z1 * Math.sin(rx);
+      z1 = y1 * Math.sin(rx) + z1 * Math.cos(rx);
+      let point = new point(x1, y1, z1, w, h, fov);
       this.x = point.x
       this.y = point.y
     }
@@ -204,7 +202,7 @@
       drawInCtx.strokeStyle = "blue";
       drawInCtx.lineWidth = 1;
       drawInCtx.stroke();
-      requestAnimationFrame(draw3DStuffWithAnimation(drawIn, w, h, fov, 0.1, 0.1, 0))
+      draw3DStuffWithAnimation(drawIn, w, h, fov, 0.1, 0.1, 0)
     }
     async function draw3DStuffWithAnimation(drawIn, w, h, fov, rx, ry, rz) {
       let drawInCtx = drawIn.getContext('2d');
@@ -241,7 +239,7 @@
       drawInCtx.strokeStyle = "blue";
       drawInCtx.lineWidth = 1;
       drawInCtx.stroke();
-      requestAnimationFrame(draw3DStuffWithAnimation(drawIn, w, h, fov, rx+0.1, ry+0.1, 0))
+      draw3DStuffWithAnimation(drawIn, w, h, fov, rx+0.1, ry+0.1, 0)
     }
     $(document).ready(async function () {
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE);
