@@ -169,6 +169,7 @@
     async function drawCube(canvas, w, h, X, Y, Z) {
       fov = 40;
       let ctx3D = canvas.getContext('2d');
+      alert("hi")
       let x = getPointX(w, h, X - 50, Y, Z, fov);
       let y = getPointY(w, h, X - 50, Y, Z, fov);
       let x2 = getPointX(w, h, X + 50, Y, Z + 50, fov);
