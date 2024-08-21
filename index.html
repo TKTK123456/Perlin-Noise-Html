@@ -173,14 +173,15 @@
     async function drawCube(canvas, w, h, X, Y, Z) {
       fov = 40;
       let ctx3D = canvas.getContext('2d');
-      let x = await getPointX(w, h, X-50, Y, Z, fov);
-      let y = await getPointY(w, h, X-50, Y, Z, fov);
-      let x2 = await getPointX(w, h, X+50, Y, Z+50, fov);
-      let y2 = await getPointY(w, h, X+50, Y, Z+50, fov);
+      let x = await getPointX(w, h, X - 50, Y, Z, fov);
+      let y = await getPointY(w, h, X - 50, Y, Z, fov);
+      let x2 = await getPointX(w, h, X + 50, Y, Z + 50, fov);
+      let y2 = await getPointY(w, h, X + 50, Y, Z + 50, fov);
       ctx3D.moveTo(x, y);
       ctx3D.lineTo(x2, y2);
       ctx3D.strokeStyle = "red";
       ctx3D.stroke();
+    }
     $(document).ready(async function () {
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
       await drawGrid(1000, 712, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE)
