@@ -155,6 +155,20 @@
       this.x = w/2+(x*(fov/(z-230)));
       this.y = h/2+(y*(fov/(z-230)));
     }
+    function pointWithRotation(x, y, z, w, h, fov, rx, ry, rz) {
+      let x1 = x * Math.cos(rz) - y * Math.sin(rz);
+      let y1 = x * Math.sin(rz) + y * Math.cos(rz);
+      let z1 = z;
+      let x2 = x1 * Math.cos(ry) - z1 * Math.sin(ry);
+      let y2 = y1;
+      let z2 = x1 * Math.sin(ry) + z1 * Math.cos(ry);
+      let x3 = x2;
+      let y3 = y2 * Math.cos(rx) - z2 * Math.sin(rx);
+      let z3 = y2 * Math.sin(rx) + z2 * Math.cos(rx);
+      let point = new point(x3, y3, z3, w, h, fov);
+      this.x = point.x
+      this.y = point.y
+    }
     async function draw3DStuff(drawIn) {
       let drawInCtx = drawIn.getContext('2d');
       const width = 400;
@@ -190,6 +204,44 @@
       drawInCtx.strokeStyle = "blue";
       drawInCtx.lineWidth = 1;
       drawInCtx.stroke();
+      requestAnimationFrame(draw3DStuffWithAnimation(drawIn, w, h, fov, 0.1, 0.1, 0.1))
+    }
+    async function draw3DStuffWithAnimation(drawIn, w, h, fov, rx, ry, rz) {
+      let drawInCtx = drawIn.getContext('2d');
+      const width = w;
+      const height = h;
+      const v1 = new pointWithRotation(-25, -25, 25, width, height, fov, rx, ry, rz);
+      const v2 = new pointWithRotation(25, -25, 25, width, height, fov, rx, ry, rz);
+      const v3 = new pointWithRotation(25, 25, 25, width, height, fov, rx, ry, rz);
+      const v4 = new pointWithRotation(-25, 25, 25, width, height, fov, rx, ry, rz);
+      const v5 = new pointWithRotation(-25, -25, -25, width, height, fov, rx, ry, rz);
+      const v6 = new pointWithRotation(25, -25, -25, width, height, fov, rx, ry, rz);
+      const v7 = new pointWithRotation(25, 25, -25, width, height, fov, rx, ry, rz);
+      const v8 = new pointWithRotation(-25, 25, -25, width, height, fov, rx, ry, rz);
+      drawInCtx.clearRect()
+      drawInCtx.beginPath();
+      drawInCtx.moveTo(v1.x, v1.y);
+      drawInCtx.lineTo(v2.x, v2.y);
+      drawInCtx.lineTo(v3.x, v3.y);
+      drawInCtx.lineTo(v4.x, v4.y);
+      drawInCtx.lineTo(v1.x, v1.y);
+      drawInCtx.moveTo(v5.x, v5.y);
+      drawInCtx.lineTo(v6.x, v6.y);
+      drawInCtx.lineTo(v7.x, v7.y);
+      drawInCtx.lineTo(v8.x, v8.y);
+      drawInCtx.lineTo(v5.x, v5.y);
+      drawInCtx.moveTo(v1.x, v1.y);
+      drawInCtx.lineTo(v5.x, v5.y);
+      drawInCtx.moveTo(v2.x, v2.y);
+      drawInCtx.lineTo(v6.x, v6.y);
+      drawInCtx.moveTo(v3.x, v3.y);
+      drawInCtx.lineTo(v7.x, v7.y);
+      drawInCtx.moveTo(v4.x, v4.y);
+      drawInCtx.lineTo(v8.x, v8.y);
+      drawInCtx.strokeStyle = "blue";
+      drawInCtx.lineWidth = 1;
+      drawInCtx.stroke();
+      requestAnimationFrame(draw3DStuffWithAnimation(drawIn, w, h, fov, rx+0.1, ry+0.1, rz+0.1))
     }
     $(document).ready(async function () {
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE);
