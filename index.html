@@ -152,17 +152,17 @@
       }
     }
     async function draw3DStuff(drawIn) {
-      try {
-        let drawInCtx = drawIn.getContext('2d');
-        alert("Context: " + drawInCtx); // Check if the context is valid
-        drawInCtx.beginPath();
-        drawInCtx.moveTo(550, 406);
-        drawInCtx.lineTo(500, 356);
-        drawInCtx.strokeStyle = "red";
-        drawInCtx.stroke();
-      } catch (error) {
-        alert("Error: " + error);
-      }
+      let drawInCtx = drawIn.getContext('2d');
+      drawInCtx.beginPath();
+      alert("1")
+      drawInCtx.moveTo(100, 100); // Simpler coordinates
+      alert("2")
+      drawInCtx.lineTo(200, 200);
+      alert("3")
+      drawInCtx.strokeStyle = "blue"; // Different color
+      alert("4")
+      drawInCtx.stroke();
+      alert("5")
     }
     $(document).ready(async function () {
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE);
