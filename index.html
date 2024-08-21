@@ -152,7 +152,7 @@
       }
     }
     async function draw3DStuff(drawIn) {
-      let drawInCtx = drawIn.getContext('2d')
+      let drawInCtx = drawIn.getContext('2d');
       drawInCtx.beginPath();
       drawInCtx.moveTo(550, 406);
       drawInCtx.lineTo(500, 356);
@@ -162,7 +162,9 @@
     $(document).ready(async function () {
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE);
       await drawGrid(1000, 712, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE);
-      draw3DStuff(document.getElementById('cnvs3D'));
+      setTimeout(function() {
+          draw3DStuff(document.getElementById('cnvs3D')); 
+      }, 100);
     });
   </script>
 </body>
