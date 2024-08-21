@@ -166,9 +166,9 @@
       let Y = h / 2 + (y*(fov/z));
       return Y
     }
-    async function drawCube(canvas, w, h, X, Y, Z) {
+    async function drawCube(canva, w, h, X, Y, Z) {
       fov = 40;
-      let ctx3D = canvas.getContext('2d');
+      let ctx3D = canva.getContext('2d');
       alert("hi")
       let x = getPointX(w, h, X - 50, Y, Z, fov);
       let y = getPointY(w, h, X - 50, Y, Z, fov);
