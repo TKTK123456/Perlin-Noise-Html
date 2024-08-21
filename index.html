@@ -15,9 +15,11 @@
   <script>
     'use strict';
     let cnvs = document.getElementById('cnvs');
+    let cnvs3D = document.getElementById('cnvs3D');
     cnvs.width = 1000;
     cnvs.height = 712;
     let ctx = cnvs.getContext('2d');
+    let ctx3D = cnvs3D.getContext('2d');
     const GRID_SIZE = 4;
     const RESOLUTION = 128;
     const COLOR_SCALE = 250;
@@ -166,23 +168,22 @@
       let Y = h / 2 + (y*(fov/z));
       return Y
     }
-    async function drawCube(canva, w, h, X, Y, Z) {
+    async function drawCube(context, w, h, X, Y, Z) {
       fov = 40;
-      const ctx3D = canva.getContext('2d');
       alert("hi")
       let x = getPointX(w, h, X - 50, Y, Z, fov);
       let y = getPointY(w, h, X - 50, Y, Z, fov);
       let x2 = getPointX(w, h, X + 50, Y, Z + 50, fov);
       let y2 = getPointY(w, h, X + 50, Y, Z + 50, fov);
-      ctx3D.moveTo(x, y);
-      ctx3D.lineTo(x2, y2);
-      ctx3D.strokeStyle = "red";
-      ctx3D.stroke();
+      context.moveTo(x, y);
+      context.lineTo(x2, y2);
+      context.strokeStyle = "red";
+      context.stroke();
     }
     $(document).ready(async function () {
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE)
       await drawGrid(1000, 712, document.getElementById('grid'), GRID_SIZE, RESOLUTION, COLOR_SCALE)
-      await drawCube(document.getElementById('cnvs3D'), 1000, 712, 0, 0, 0)
+      await drawCube(ctx3D, 1000, 712, 0, 0, 0)
     });
   </script>
 </body>
