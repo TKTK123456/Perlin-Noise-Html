@@ -157,17 +157,13 @@
       z: 0,
     }
     async function getPointX(w, h, x, y, z, fov) {
-      let pitch = atan((x - cam.x) / (y - cam.y));
-      let yaw = atan((z - cam.z) / (y - cam.y));
-      let X = w / 2 + (pitch * (w / fov));
-      let Y = h / 2 + (yaw * (h / fov));
+      let X = w / 2 + (x*(fov/z));
+      let Y = h / 2 + (y*(fov/z));
       return X
     }
     async function getPointY(w, h, x, y, z, fov) {
-      let pitch = atan((x - cam.x) / (z - cam.z));
-      let yaw = atan((y - cam.y) / (z - cam.z));
-      let X = w / 2 + (pitch * (w / fov));
-      let Y = h / 2 + (yaw * (h / fov));
+      let X = w / 2 + (x*(fov/z));
+      let Y = h / 2 + (y*(fov/z));
       return Y
     }
     async function drawCube(canvas, w, h, X, Y, Z) {
