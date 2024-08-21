@@ -202,7 +202,6 @@
       drawInCtx.strokeStyle = "blue";
       drawInCtx.lineWidth = 1;
       drawInCtx.stroke();
-      draw3DStuffWithAnimation(drawIn, w, h, fov, 0.1, 0.1, 0)
     }
     async function draw3DStuffWithAnimation(drawIn, w, h, fov, rx, ry, rz) {
       let drawInCtx = drawIn.getContext('2d');
@@ -248,6 +247,9 @@
       setTimeout(function() {
           draw3DStuff(document.getElementById('cnvs3D')); 
       }, 100);
+      setTimeout(function() {
+          draw3DStuffWithAnimation(document.getElementById('cnvs3D'), 400, 200, 200, 0, 0, 0); 
+      }, 300)
     });
   </script>
 </body>
