@@ -158,23 +158,13 @@
       y: 0,
       z: 0,
     }
-    async function getPointX(w, h, x, y, z, fov) {
-      let X = w / 2 + (x*(fov/z));
-      let Y = h / 2 + (y*(fov/z));
-      return X
-    }
-    async function getPointY(w, h, x, y, z, fov) {
-      let X = w / 2 + (x*(fov/z));
-      let Y = h / 2 + (y*(fov/z));
-      return Y
-    }
     async function drawCube(context, w, h, X, Y, Z) {
       fov = 40;
       alert("hi")
-      let x = getPointX(w, h, X - 50, Y, Z, fov);
-      let y = getPointY(w, h, X - 50, Y, Z, fov);
-      let x2 = getPointX(w, h, X + 50, Y, Z + 50, fov);
-      let y2 = getPointY(w, h, X + 50, Y, Z + 50, fov);
+      let x = w/2+((X-50)*(fov/Z))
+      let y = h/2+((Y-50)*(fov/Z))
+      let x2 = w/2+(X*(fov/(Z+50)))
+      let y2 = h/2+((Y+50)*(fov/(Z+50)))
       context.moveTo(x, y);
       context.lineTo(x2, y2);
       context.strokeStyle = "red";
