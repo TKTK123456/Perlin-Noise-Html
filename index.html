@@ -164,12 +164,21 @@
       const v2 = new point(25, -25, 25, width, height, fov);
       const v3 = new point(25, 25, 25, width, height, fov);
       const v4 = new point(-25, 25, 25, width, height, fov);
+      const v5 = new point(-25, -25, -25, width, height, fov);
+      const v6 = new point(25, -25, -25, width, height, fov);
+      const v7 = new point(25, 25, -25, width, height, fov);
+      const v8 = new point(-25, 25, -25, width, height, fov);
       drawInCtx.beginPath();
       drawInCtx.moveTo(v1.x, v1.y);
       drawInCtx.lineTo(v2.x, v2.y);
       drawInCtx.lineTo(v3.x, v3.y);
       drawInCtx.lineTo(v4.x, v4.y);
       drawInCtx.lineTo(v1.x, v1.y);
+      drawInCtx.moveTo(v5.x, v5.y)
+      drawInCtx.lineTo(v6.x, v6.y);
+      drawInCtx.lineTo(v7.x, v7.y);
+      drawInCtx.lineTo(v8.x, v8.y);
+      drawInCtx.lineTo(v5.x, v5.y);
       drawInCtx.strokeStyle = "blue";
       drawInCtx.lineWidth = 1;
       drawInCtx.stroke();
