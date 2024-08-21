@@ -168,7 +168,7 @@
     }
     async function drawCube(canva, w, h, X, Y, Z) {
       fov = 40;
-      let ctx3D = canva.getContext('2d');
+      const ctx3D = canva.getContext('2d');
       alert("hi")
       let x = getPointX(w, h, X - 50, Y, Z, fov);
       let y = getPointY(w, h, X - 50, Y, Z, fov);
