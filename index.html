@@ -205,7 +205,6 @@
     }
     async function draw3DStuffWithAnimation(drawIn, w, h, fov, rx, ry, rz) {
       let drawInCtx = drawIn.getContext('2d');
-      alert(`rx: ${rx}, ry: ${ry}, rz: ${rz}`)
       const width = w;
       const height = h;
       const v1 = new pointWithRotation(-25, -25, 25, width, height, fov, rx*30, ry*30, rz);
@@ -239,7 +238,16 @@
       drawInCtx.strokeStyle = "blue";
       drawInCtx.lineWidth = 1;
       drawInCtx.stroke();
-      draw3DStuffWithAnimation(drawIn, w, h, fov, rx+0.1, ry+0.1, 0)
+      
+    }
+    let ary = 0;
+    let arx = 0;
+    let arz = 0;
+    function animate() {
+      ary += 0.1;
+      arx += 0.1;
+      draw3DStuffWithAnimation(document.getElementById('cnvs3D'), 400, 200, 200, arx, ary, arz)
+      requestAnimationFrame(animate);
     }
     $(document).ready(async function () {
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE);
@@ -248,7 +256,7 @@
           draw3DStuff(document.getElementById('cnvs3D')); 
       }, 100);
       setTimeout(function() {
-          draw3DStuffWithAnimation(document.getElementById('cnvs3D'), 400, 200, 200, 0, 0, 0); 
+        requestAnimationFrame(animate);
       }, 300)
     });
   </script>
