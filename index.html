@@ -151,11 +151,25 @@
         Div.appendChild(newLine)
       }
     }
+    function point(x, y, z, w, h, fov) {
+      this.x = w/2+(x*(fov/z));
+      this.y = h/2+(y*(fov/z));
+    }
     async function draw3DStuff(drawIn) {
       let drawInCtx = drawIn.getContext('2d');
+      const width = 400;
+      const height = 200;
+      const fov = 200;
+      const v1 = new point(50, 0, -50, width, height, fov);
+      const v2 = new point(-50, 0, -50, width, height, fov);
+      const v3 = new point(50, 0, 50, width, height, fov);
+      const v4 = new point(-50, 0, 50, width, height, fov);
       drawInCtx.beginPath();
-      drawInCtx.moveTo(0, 0);
-      drawInCtx.lineTo(400, 200);
+      drawInCtx.moveTo(v1.x, v1.y);
+      drawInCtx.lineTo(v2.x, v2.y);
+      drawInCtx.lineTo(v3.x, v3.y);
+      drawInCtx.lineTo(v4.x, v4.y);
+      drawInCtx.lineTo(v1.x, v1.y);
       drawInCtx.strokeStyle = "blue";
       drawInCtx.lineWidth = 1;
       drawInCtx.stroke();
