@@ -169,10 +169,10 @@
     async function drawCube(canvas, w, h, X, Y, Z) {
       fov = 40;
       let ctx3D = canvas.getContext('2d');
-      let x = await getPointX(w, h, X - 50, Y, Z, fov);
-      let y = await getPointY(w, h, X - 50, Y, Z, fov);
-      let x2 = await getPointX(w, h, X + 50, Y, Z + 50, fov);
-      let y2 = await getPointY(w, h, X + 50, Y, Z + 50, fov);
+      let x = getPointX(w, h, X - 50, Y, Z, fov);
+      let y = getPointY(w, h, X - 50, Y, Z, fov);
+      let x2 = getPointX(w, h, X + 50, Y, Z + 50, fov);
+      let y2 = getPointY(w, h, X + 50, Y, Z + 50, fov);
       ctx3D.moveTo(x, y);
       ctx3D.lineTo(x2, y2);
       ctx3D.strokeStyle = "red";
