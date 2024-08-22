@@ -38,7 +38,6 @@ const engine3D = {
   render: function(canvas, world, cW, cH, cam) {
     alert("2")
     let context = canvas.getContext('2d');
-    let cam_vect = this.polar_to_cart(this.to_rad(cam.yaw), this.to_rad(cam.pitch));
     context.clearRect(0, 0, cW, cH);
     for (let i = 0; i < world.length; i++) {
       world[i].dist = this.distance(cam, world[i].vert);
@@ -48,6 +47,7 @@ const engine3D = {
         z: (world[i].vert.z - cam.z) / world[i].dist
       };
     }
+    alert("3")
     world = world.filter(f =>
       (this.dot_prod(f.c_vect, f.vect) < 0) &&
       f.verts.some(c => ({
@@ -55,6 +55,7 @@ const engine3D = {
         y: c.y - cam.y,
         z: c.z - cam.z
       }) > 0));
+    alert("4")
     for (let i = 0; i < world.length; i++) {
       this.drawVert(world[i].c_vert, canvas, "blue", world[i].width, world[i].height, cW, cH)
     }
