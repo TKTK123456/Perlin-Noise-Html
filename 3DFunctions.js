@@ -2,6 +2,7 @@
 const engine3D = {
   translate: (x, y, z) => (v => ({x: v.x + x, y: v.y + y, z: v.z + z})),
   distance: (c1, c2) => ((c2.x - c1.x)**2 + (c2.y - c1.y)**2 + (c2.z - c1.z)**2) ** 0.5,
+  dot_prod: (v1, v2) => v1.x * v2.x + v1.y * v2.y + v1.z * v2.z,
   x_axis_rotate: (r) => (v => ({
     x: v.x,
     y: v.y * Math.cos(r) + v.z * Math.sin(r),
