@@ -39,7 +39,8 @@ const engine3D = {
     alert("2")
     let context = canvas.getContext('2d');
     context.clearRect(0, 0, cW, cH);
-    for (var i = 0; i < world.length; i++) {
+    let i;
+    for (i = 0; i < world.length; i++) {
       world[i].dist = this.distance(cam, world[i].vert);
       world[i].c_vert = {
         x: (world[i].vert.x - cam.x) / world[i].dist,
@@ -48,9 +49,9 @@ const engine3D = {
       };
     }
     alert("3")
-    for (let i = 0; i < world.length; i++) {
+    for (i = 0; i < world.length; i++) {
+      alert(`4 ${i}`);
       this.drawVert(world[i].vert, canvas, "blue", 5, 5, cW, cH);
-      alert(4+i);
     }
   }
 };
