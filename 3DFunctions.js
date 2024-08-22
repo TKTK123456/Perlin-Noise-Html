@@ -50,12 +50,11 @@ const engine3D = {
     }
     world = world.filter(f =>
       (this.dot_prod(f.c_vect, f.vect) < 0) &&
-      f.verts.some(c =>
-        this.dot_prod({
-          x: c.x - cam.x,
-          y: c.y - cam.y,
-          z: c.z - cam.z
-        }, cam_vect) > 0));
+      f.verts.some(c => ({
+        x: c.x - cam.x,
+        y: c.y - cam.y,
+        z: c.z - cam.z
+      }) > 0));
     for (let i = 0; i < world.length; i++) {
       this.drawVert(world[i].c_vert, canvas, "blue", world[i].width, world[i].height, cW, cH)
     }
