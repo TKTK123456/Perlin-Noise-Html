@@ -152,20 +152,64 @@
         Div.appendChild(newLine)
       }
     }
-    async function gen3DWorld(w, h, l, gs, r, cs) {
-      
+    async function gen3DWorld(w, h, gs, r, cs, focal) {
+      let world = [];
+      world.push({
+        vert: {
+          x: 0,
+          y: 0,
+          z: 0,
+          focal: focal
+        },
+        width: 5,
+        height: 5
+      })
+      world.push({
+        vert: {
+          x: 20,
+          y: 20,
+          z: 0,
+          focal: focal
+        },
+        width: 5,
+        height: 5
+      })
+      world.push({
+        vert: {
+          x: -20,
+          y: 20,
+          z: 0,
+          focal: focal
+        },
+        width: 5,
+        height: 5
+      })
+      world.push({
+        vert: {
+          x: 20,
+          y: 20,
+          z: -20,
+          focal: focal
+        },
+        width: 5,
+        height: 5
+      })
+      world.push({
+        vert: {
+          x: 40,
+          y: 40,
+          z: -20,
+          focal: focal
+        },
+        width: 5,
+        height: 5
+      })
     }
     async function draw3DStuff(drawIn) {
       const cW = 400;
       const cH = 200;
       const focal = 200;
-      let vert = {
-        x: 0,
-        y: 0,
-        z: 0,
-        focal: focal,
-      };
-      engine3D.drawVert(vert, drawIn, 'blue', 5, 5, cW, cH);
+      engine3D.render(drawIn, gen3DWorld(cW, cH, GRID_SIZE, RESOLUTION, COLOR_SCALE, focal), cW, cH, focal)
     }
     $(document).ready(async function () {
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE);
