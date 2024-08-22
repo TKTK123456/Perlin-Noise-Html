@@ -199,7 +199,7 @@
         min_lightness: 0.2
       };
       let heights = await get3DMap(32, 32, 2, 8)
-      zengine.render(gen_world(32, 32, heights, 8), cam, dI, false, Infinity, light);
+      zengine.render(gen_world(32, 32, heights, 8), cam, dI, false, Infinity, light, dI.width, dI.height);
     }
     function gen_world(l, w, heights, hill_height) {
       let world = [];

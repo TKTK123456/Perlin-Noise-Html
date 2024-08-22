@@ -1,9 +1,9 @@
 'use strict';
 
 let zengine = {
-    render: function(world, cam, canvas, wireframe, horizon, light){
+    render: function(world, cam, canvas, wireframe, horizon, light, w, h){
         let context = canvas.getContext('2d');
-        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.clearRect(0, 0, w, h);
 
         //create cartesian unit vector representations from polar light and cam vects
         let cam_vect = this.polar_to_cart(this.to_rad(cam.yaw), this.to_rad(cam.pitch));
@@ -50,8 +50,8 @@ let zengine = {
                                      p: this.to_deg(Math.atan2(c.z - cam.z, c.y - cam.y))}));
 
             //convert angles to 2d canvas coordinates
-            let cos = cas.map(a => ({x: canvas.width/2  + (a.y * (canvas.width/cam.fov)),
-                                     y: canvas.height/2 - (a.p * (canvas.width/cam.fov))}));
+            let cos = cas.map(a => ({x: w/2  + (a.y * (w/cam.fov)),
+                                     y: h/2 - (a.p * (w/cam.fov))}));
 
             //draw the face on the canvas
             context.strokeStyle = wireframe ? 'white' : 'black';
