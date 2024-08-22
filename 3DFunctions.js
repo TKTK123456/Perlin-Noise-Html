@@ -36,6 +36,7 @@ const engine3D = {
     context.fillRect(v.x, v.y, width, height);
   },
   render: function(canvas, world, cW, cH, cam) {
+    alert("2")
     let context = canvas.getContext('2d');
     let cam_vect = this.polar_to_cart(this.to_rad(cam.yaw), this.to_rad(cam.pitch));
     context.clearRect(0, 0, cW, cH);
