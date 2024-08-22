@@ -24,7 +24,7 @@ const engine3D = {
   drawVert: function(vert, canvas, color, width, height, cW, cH) {
     alert(`Drawing vert: ${vert}`)
     let context = canvas.getContext('2d');
-      let v = point(vert, cW/2, cH/2);
+      let v = this.point(vert, cW/2, cH/2);
       context.fillStyle = color;
       context.fillRect(v.x, v.y, width, height);
   }
