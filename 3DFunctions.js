@@ -49,7 +49,7 @@ const engine3D = {
       };
     }
     world = world.filter(f =>
-      (wireframe || !has_vects || this.dot_prod(f.c_vect, f.vect) < 0) &&
+      (this.dot_prod(f.c_vect, f.vect) < 0) &&
       f.verts.some(c =>
         this.dot_prod({
           x: c.x - cam.x,
