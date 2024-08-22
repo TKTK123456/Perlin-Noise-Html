@@ -1,3 +1,4 @@
+'use strict';
 const engine3D = {
   translate: (x, y, z) => (v => ({x: v.x + x, y: v.y + y, z: v.z + z})),
   x_axis_rotate: (r) => (v => ({
@@ -27,4 +28,4 @@ const engine3D = {
       context.fillStyle = color;
       context.fillRect(v.x, v.y, width, height);
   }
-}
+};
