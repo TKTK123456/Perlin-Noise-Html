@@ -209,6 +209,13 @@
       const cW = 400;
       const cH = 200;
       const focal = 200;
+      let cam = {
+        x: 0,
+        y: 0,
+        z: 0,
+        yaw: 0,
+        pitch: -30,
+      }
       engine3D.render(drawIn, gen3DWorld(cW, cH, GRID_SIZE, RESOLUTION, COLOR_SCALE, focal), cW, cH, focal)
     }
     $(document).ready(async function () {
