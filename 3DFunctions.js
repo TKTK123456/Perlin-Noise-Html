@@ -49,7 +49,7 @@ const engine3D = {
     }
     alert("3")
     for (let i = 0; i < world.length; i++) {
-      this.drawVert(world[i].c_vert, canvas, "blue", world[i].width, world[i].height, cW, cH)
+      this.drawVert(world[i].vert, canvas, "blue", world[i].width, world[i].height, cW, cH)
     }
   }
 };
