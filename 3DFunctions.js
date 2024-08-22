@@ -47,11 +47,8 @@ const engine3D = {
         y: (world[i].vert.y - cam.y) / world[i].dist,
         z: (world[i].vert.z - cam.z) / world[i].dist
       };
-    }
-    alert("3")
-    for (i = 0; i < world.length; i++) {
-      alert(`4 ${i}`);
       this.drawVert(world[i].vert, canvas, "blue", 5, 5, cW, cH);
     }
+    alert("3")
   }
 };
