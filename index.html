@@ -161,8 +161,9 @@
         y: 0,
         z: 0,
         focal: focal,
-      }
-        engine3D.drawVert(vert, drawIn, 'blue', 5, 5, cW, cH);
+      };
+      alert("going to draw vert: "+ vert)
+      engine3D.drawVert(vert, drawIn, 'blue', 5, 5, cW, cH);
     }
     $(document).ready(async function () {
       await drawMap(cnvs.width, cnvs.height, cnvs, ctx, GRID_SIZE, RESOLUTION, COLOR_SCALE);
